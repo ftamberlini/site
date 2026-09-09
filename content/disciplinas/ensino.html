@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ensino: disciplinas do Prof. Fernando (MPCCD, MDCOO, PFEI) e guias práticos de Git e consulta rápida.">
+    <meta name="theme-color" content="#f7f8f2">
+    <title>Ensino — Prof. Fernando</title>
+    <link rel="icon" href="../../img/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../css/estilo.css">
+    <script src="../../js/script.js" defer></script>
+</head>
+
+<body>
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <header class="header"><a class="brand" href="../../index.html#inicio" aria-label="Prof. Fernando, início">ft<span>.</span><span class="brand-name">Prof. Fernando</span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">☰</span></button>
+        <nav id="navigation" aria-label="Principal"><a href="ensino.html" aria-current="page">Ensino</a><a href="../cientistas/cientistas.html">Cientistas da Computação</a><a href="../divagacoes/divagacoes.html">Divagações</a><a href="../../index.html#sobre">Sobre <span aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main id="conteudo" class="wrap section lista-page">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">01 / ENSINO</p>
+                <h1>Ler. Praticar. Aprender.</h1>
+            </div>
+            <p>Materiais de aula e referências <br>para ter sempre por perto.</p>
+        </div>
+        <div class="lista-layout">
+            <aside class="lista-menu" aria-label="Disciplinas">
+                <h2>Disciplinas</h2>
+                <ul>
+                    <li><a href="ensino.html" aria-current="page" class="ativo">Visão geral</a></li>
+                    <li><a href="mpccd/mpccd.html">MPCCD</a></li>
+                    <li><a href="mdcoo/mdcoo.html">MDCOO</a></li>
+                    <li><a href="pfei/pfei.html">PFEI</a></li>
+                </ul>
+            </aside>
+            <div class="ensino-conteudo">
+                <div class="course-grid ensino-grid">
+                    <article class="course-card">
+                        <div class="card-top"><span class="icon-box">⌘</span><span class="badge">INFORMÁTICA BÁSICA</span></div>
+                        <h3>MPCCD</h3>
+                        <p class="course-name">Metodologia e Produção de Conhecimento na Cultura Digital</p>
+                        <p>Da pesquisa à criação: ferramentas e reflexões para participar da cultura digital com autonomia.</p>
+                        <div class="card-footer"><span>Período 2026.2</span><a href="mpccd/mpccd.html" aria-label="Explorar disciplina MPCCD">Explorar disciplina <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="course-card">
+                        <div class="card-top"><span class="icon-box violet">{ }</span><span class="badge">DESENVOLVIMENTO</span></div>
+                        <h3>MDCOO</h3>
+                        <p class="course-name">Modelagem de Domínio e Conceitos de Orientação a Objetos</p>
+                        <p>Transforme problemas em modelos e modelos em código com UML, JavaScript e orientação a objetos.</p>
+                        <div class="card-footer"><span>Período 2026.2</span><a href="mdcoo/mdcoo.html" aria-label="Explorar disciplina MDCOO">Explorar disciplina <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                    <article class="course-card">
+                        <div class="card-top"><span class="icon-box">&lt;/&gt;</span><span class="badge">FRONT-END</span></div>
+                        <h3>PFEI</h3>
+                        <p class="course-name">Programação Front-End I</p>
+                        <p>HTML, CSS e JavaScript para construir interfaces acessíveis e responsivas.</p>
+                        <div class="card-footer"><span>Período 2025.2</span><a href="pfei/pfei.html" aria-label="Explorar disciplina PFEI">Explorar disciplina <span aria-hidden="true">↗</span></a></div>
+                    </article>
+                </div>
+                <div class="resource-grid"><a class="resource-card" href="#git"><span class="resource-symbol">⑂</span>
+                        <div>
+                            <h3>Git, sem complicação</h3>
+                            <p>Comandos, boas práticas e um commit de cada vez.</p>
+                        </div><span aria-hidden="true">↗</span>
+                    </a><a class="resource-card" href="#cheatsheet"><span class="resource-symbol">&gt;_</span>
+                        <div>
+                            <h3>Cheat sheet</h3>
+                            <p>SO, Git e JavaScript. O essencial em uma consulta.</p>
+                        </div><span aria-hidden="true">↗</span>
+                    </a></div>
+                <div class="lesson-list">
+                    <details id="git">
+                        <summary><span><small>GUIA PRÁTICO / GIT</small>Um histórico que conta a história do projeto</span><span class="expand" aria-hidden="true">+</span></summary>
+                        <div class="detail-content">
+                            <p>Git registra versões do projeto. GitHub é uma plataforma que hospeda repositórios e facilita a colaboração. Você pode usar Git localmente sem ter uma conta no GitHub.</p>
+                            <h4>Seu primeiro fluxo de trabalho</h4>
+                            <pre><code>git init
+git status
+git add index.html
+git commit -m "Cria a página inicial"
+git switch -c melhora-navegacao</code></pre>
+                            <p>Configure sua autoria antes do primeiro commit com <code>git config --global user.name "Seu Nome"</code> e <code>git config --global user.email "seu-email@example.com"</code>. O nome e o e-mail passam a fazer parte dos commits.</p>
+                            <div class="two-columns">
+                                <div>
+                                    <h4>Antes de cada commit</h4>
+                                    <ul>
+                                        <li>Use <code>git diff</code> para revisar mudanças e <code>git diff --staged</code> para revisar o que será registrado.</li>
+                                        <li>Prefira commits pequenos, com mensagens que expliquem a mudança.</li>
+                                        <li>Crie um <code>.gitignore</code> para dependências e arquivos locais. Ele não deixa de rastrear arquivos já versionados.</li>
+                                        <li>Não inclua senhas, tokens ou arquivos <code>.env</code> no histórico.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4>Trabalhando em equipe</h4>
+                                    <p>Use <code>git clone URL_DO_REPOSITORIO</code> para obter um projeto. Depois de configurar o remoto, <code>git push -u origin NOME_DA_BRANCH</code> publica sua branch. Revise alterações em conjunto antes de integrá-las.</p>
+                                    <p><code>git fetch</code> baixa referências remotas sem integrar mudanças. Se houver conflito ao mesclar, edite os trechos indicados, teste a solução e registre a resolução.</p>
+                                    <p><code>git restore --staged arquivo</code> retira o arquivo da preparação e preserva a edição. Já <code>git restore arquivo</code> descarta mudanças locais não preparadas nesse arquivo: revise antes de usar.</p>
+                                </div>
+                            </div>
+                            <div class="source-links"><a href="https://git-scm.com/doc">Documentação oficial do Git ↗</a></div>
+                        </div>
+                    </details>
+                    <details id="cheatsheet">
+                        <summary><span><small>CONSULTA RÁPIDA</small>Menos decorar, mais fazer</span><span class="expand" aria-hidden="true">+</span></summary>
+                        <div class="detail-content">
+                            <p>Comandos de SO para Bash (Linux/macOS) e PowerShell (Windows). Os exemplos de JavaScript podem ser executados no console do navegador.</p>
+                            <div class="cheat-controls">
+                                <div class="filters" role="group" aria-label="Filtrar comandos"><button class="active" data-filter="all" aria-pressed="true">Todos</button><button data-filter="SO" aria-pressed="false">SO</button><button data-filter="Git" aria-pressed="false">Git</button><button data-filter="JavaScript" aria-pressed="false">JavaScript</button></div><label class="search-label"><span class="sr-only">Buscar comando</span><input id="command-search" type="search" placeholder="Buscar comando…"></label>
+                            </div>
+                            <div id="commands"></div>
+                            <p id="command-status" class="muted" role="status"></p><noscript>
+                                <p>Ative o JavaScript para pesquisar e copiar comandos. Consulte também os guias oficiais abaixo.</p>
+                            </noscript>
+                            <div class="source-links"><a href="https://www.gnu.org/software/bash/manual/">Bash ↗</a><a href="https://learn.microsoft.com/pt-br/powershell/">PowerShell ↗</a><a href="https://git-scm.com/cheat-sheet">Git ↗</a><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide">JavaScript / MDN ↗</a></div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="wrap footer">
+        <a class="brand" href="../../index.html#inicio">ft<span>.</span></a>
+        <p>Prof. Fernando <span>·</span> Feito para compartilhar conhecimento.</p>
+        <a href="../../index.html#inicio">Voltar ao início ↑</a>
+    </footer>
+
+    <div id="toast" class="toast" role="status"></div>
+</body>
+
+</html>
