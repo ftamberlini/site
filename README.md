@@ -12,14 +12,16 @@ Acesse http://localhost:8000. Também é possível abrir `index.html` diretament
 
 ## Arquivos
 
-- `index.html`: conteúdo, disciplinas, dez perfis, reflexões e apresentação.
+- `index.html`: conteúdo, disciplinas, 19 perfis de cientistas, reflexões e apresentação.
 - `content/cientistas/cientistas.html` e `content/divagacoes/divagacoes.html`: páginas com menu lateral (itens em ordem alfabética) e conteúdo carregado dos arquivos da mesma pasta; sem escolha, mostram um item aleatório.
 - `css/estilo.css`: identidade visual, responsividade, foco por teclado e impressão.
 - `js/script.js`: menu móvel, abertura por âncora, sorteio de cinco cientistas e três divagações na `index.html` e a busca/filtros/cópia dos 24 comandos na página de ensino (roda só onde houver o bloco `#commands`).
 - `js/lista.js`: script compartilhado das páginas de cientistas e divagações (menu lateral, carregamento do conteúdo e sorteio inicial).
 - `content/cientistas/`, `content/divagacoes/`: uma página HTML por cientista e por divagação.
 - `content/disciplinas/ensino.html`: destino do menu "Ensino" — menu lateral de disciplinas, cards das 3 disciplinas e os guias Git e Cheat sheet (com a busca de comandos), estes últimos em blocos recolhíveis na própria página. Usa `js/script.js`.
-- `content/disciplinas/<disc>/<disc>.html` (`mpccd.html`, `mdcoo.html`, `pfei.html`): página de cada disciplina, com o mesmo estilo do site e o mesmo menu lateral.- `img/favicon.svg`: ícone do site.
+- `content/disciplinas/<disc>/<disc>.html` (`mpccd.html`, `mdcoo.html`, `pfei.html`): página de cada disciplina, com o mesmo estilo do site e o mesmo menu lateral.
+- `img/favicon.svg`: ícone do site.
+- `img/<slug>.jpg`: foto de cada cientista (usada no card da página inicial e no topo da página individual); onde não há foto, mantém-se o monograma com as iniciais.
 
 ## Conteúdo e manutenção
 
