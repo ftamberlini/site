@@ -1,4 +1,4 @@
 deployment:
   tasks:
-    - export DEPLOYPATH=/home1/ftamb861/public_html/
+    - export DEPLOYPATH=/home1/ftamb861/public_html/dev
     - /bin/cp -R * $DEPLOYPATH
