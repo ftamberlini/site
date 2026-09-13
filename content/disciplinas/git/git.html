@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Git, sem complicação: Git x GitHub, onde hospedar repositórios, configuração inicial, níveis de configuração e como iniciar um repositório.">
+    <meta name="theme-color" content="#f7f8f2">
+    <title>Git, sem complicação — Prof. Fernando</title>
+    <link rel="icon" href="../../../img/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../../css/estilo.css">
+    <script src="../../../js/lista.js" defer></script>
+</head>
+
+<body>
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <header class="header"><a class="brand" href="../../../index.html#inicio" aria-label="Prof. Fernando, início">ft<span>.</span><span class="brand-name">Prof. Fernando</span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">☰</span></button>
+        <nav id="navigation" aria-label="Principal"><a href="../ensino.html">Ensino</a><a href="../../cientistas/cientistas.html">Cientistas da Computação</a><a href="../../divagacoes/divagacoes.html">Divagações</a><a href="../../../index.html#sobre">Sobre <span aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main id="conteudo" class="wrap section">
+        <p class="eyebrow">01 / ENSINO · GUIA PRÁTICO</p>
+        <h1>Git, sem complicação</h1>
+        <p class="about-lead">Conceitos, conta no GitHub, configuração inicial e um commit de cada vez.</p>
+        <div class="lesson-list">
+            <details id="git-e-github">
+                <summary><span><small>01 · CONCEITOS</small>Git e GitHub não são a mesma coisa</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Git é um sistema de controle de versão distribuído (DVCS). É um programa que roda na sua máquina, sem depender de internet ou de conta em nenhum serviço, e guarda o histórico do projeto em forma de instantâneos (snapshots) das mudanças. Com o Git você cria branches, compara versões, desfaz alterações e reconstrói qualquer ponto do histórico do projeto — tudo isso localmente.</p>
+                    <p>GitHub é uma plataforma na nuvem que hospeda repositórios Git e acrescenta uma camada de colaboração em torno deles: interface web, pull requests, revisão de código, issues, wikis, integração contínua (Actions) e páginas estáticas (Pages), entre outros recursos. GitHub não substitui o Git — ele depende do Git para existir, e é apenas uma, entre várias, empresas que oferecem esse tipo de serviço.</p>
+                    <p>Na prática: <strong>Git é a ferramenta; GitHub é um serviço construído sobre ela.</strong> Um projeto pode ser versionado inteiramente com Git sem nunca subir para o GitHub — mas hospedar o repositório em algum serviço remoto facilita o backup, a colaboração e a publicação do código.</p>
+                </div>
+            </details>
+            <details id="hospedagem">
+                <summary><span><small>02 · HOSPEDAGEM</small>Onde hospedar seus repositórios</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>GitHub é o mais popular, mas não é o único serviço de hospedagem de repositórios Git. Outras opções conhecidas:</p>
+                    <ul>
+                        <li><strong>GitHub</strong> — o mais usado no mercado; pertence à Microsoft; forte em código aberto e na comunidade de desenvolvedores.</li>
+                        <li><strong>GitLab</strong> — pode ser usado na nuvem (gitlab.com) ou instalado em servidor próprio (self-hosted); inclui CI/CD integrado.</li>
+                        <li><strong>Bitbucket</strong> — da Atlassian; integra-se bem com Jira e Trello, comum em times que já usam essas ferramentas.</li>
+                        <li><strong>Codeberg</strong> — plataforma sem fins lucrativos, mantida pela comunidade, focada em software livre.</li>
+                    </ul>
+                    <h4>Criando uma conta no GitHub</h4>
+                    <ol>
+                        <li>Acesse <a href="https://github.com">github.com</a> e clique em <strong>Sign up</strong>.</li>
+                        <li>Informe um e-mail válido, crie uma senha forte e escolha um nome de usuário — ele fará parte do endereço dos seus repositórios.</li>
+                        <li>Confirme a verificação exibida na tela e o código enviado para o seu e-mail.</li>
+                        <li>Escolha o plano gratuito (<em>Free</em>); ele já atende à grande maioria dos projetos pessoais e acadêmicos.</li>
+                        <li>Ative a autenticação em duas etapas (2FA) nas configurações de segurança da conta — recomendado por padrão.</li>
+                        <li>Para enviar código pela linha de comando, crie um <em>personal access token</em> ou uma chave SSH: o GitHub não aceita mais senha comum em operações via HTTPS.</li>
+                    </ol>
+                </div>
+            </details>
+            <details id="configuracao">
+                <summary><span><small>03 · CONFIGURAÇÃO</small>Configurando o Git pela primeira vez</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Depois de instalar o Git, antes do primeiro commit, é preciso dizer ao Git quem você é. Esses três comandos cobrem o básico:</p>
+                    <pre><code>git config --global init.defaultBranch main
+git config --global user.name "Seu Nome"
+git config --global user.email "seu.email@exemplo.com"</code></pre>
+                    <p>Os dois últimos definem a autoria: nome e e-mail passam a ser gravados em cada commit que você fizer. O primeiro define o nome da branch padrão criada por <code>git init</code>.</p>
+                    <p>Por que <code>main</code> em vez de <code>master</code>? Por anos, "master" foi o nome padrão da branch principal em praticamente todo repositório Git. A partir de 2020, o próprio Git passou a permitir configurar esse nome (<code>init.defaultBranch</code>), e serviços como GitHub, GitLab e Bitbucket adotaram <code>main</code> como padrão em novos repositórios — parte de um movimento da indústria para abandonar terminologia associada a "master/slave" e adotar um vocabulário mais neutro. Repositórios antigos continuam funcionando normalmente com "master"; a mudança afeta apenas o nome padrão de projetos novos, e pode ser configurada como preferir.</p>
+                    <h4>Níveis de configuração</h4>
+                    <p>O Git guarda configurações em arquivos diferentes, organizados em níveis. Do mais amplo ao mais específico:</p>
+                    <ul>
+                        <li><code>--system</code> — vale para todas as pessoas usuárias da máquina; fica em um arquivo de configuração do próprio sistema operacional. Raramente usado no dia a dia.</li>
+                        <li><code>--global</code> — vale para todos os repositórios do seu usuário; fica em <code>~/.gitconfig</code>. É onde normalmente configuramos nome, e-mail e outras preferências pessoais, como nos comandos acima.</li>
+                        <li><code>--local</code> — vale apenas para o repositório atual; fica em <code>.git/config</code>, dentro da pasta do projeto. É o padrão quando nenhuma flag é informada, e sobrescreve o valor global — útil, por exemplo, para usar um e-mail diferente em um repositório de trabalho.</li>
+                    </ul>
+                    <p>Em caso de conflito, o mais específico vence: local &gt; global &gt; system. Para ver de onde vem cada configuração ativa, use <code>git config --list --show-origin</code>.</p>
+                </div>
+            </details>
+            <details id="iniciando">
+                <summary><span><small>04 · REPOSITÓRIO</small>Iniciando um repositório</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p><code>git init</code> transforma a pasta atual em um repositório Git, criando uma subpasta oculta <code>.git</code> com toda a estrutura de controle de versão. A partir daí, o Git passa a observar as mudanças feitas ali dentro.</p>
+                    <pre><code>git init</code></pre>
+                    <p>Também é possível indicar uma pasta de destino. Se ela não existir, o Git a cria antes de inicializar o repositório — sem que você precise entrar nela primeiro:</p>
+                    <pre><code>git init minha-pasta
+git init /caminho/completo/minha-pasta</code></pre>
+                    <p>Se <code>init.defaultBranch</code> não tiver sido configurado (passo anterior), o Git pode avisar que está usando um nome padrão provisório para a branch. Você pode renomeá-la a qualquer momento com <code>git branch -m main</code>.</p>
+                    <h4>Do zero ou a partir de uma cópia</h4>
+                    <p>Existem duas formas de começar a trabalhar com um repositório. Um projeto novo, que ainda não existe em lugar nenhum, começa com <code>git init</code>, como visto acima. Já um projeto que já existe em algum lugar — no GitHub, por exemplo — não precisa ser iniciado do zero: basta <em>clonar</em> o repositório existente para obter uma cópia completa dele, já inicializada e com todo o histórico de commits:</p>
+                    <pre><code>git clone URL_DO_REPOSITORIO</code></pre>
+                    <p>O Git cria uma pasta nova com o nome do repositório, baixa todos os arquivos, branches e o histórico de commits, e já configura o repositório remoto original (chamado <code>origin</code>) para os próximos <code>git push</code> e <code>git pull</code>.</p>
+                    <p><strong>Resumindo: use <code>git init</code> para começar um projeto do zero; use <code>git clone</code> para partir de um projeto que já existe.</strong></p>
+                </div>
+            </details>
+            <details id="fluxo">
+                <summary><span><small>05 · FLUXO DE TRABALHO</small>Do primeiro commit ao dia a dia</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Com o repositório iniciado, o ciclo básico de trabalho se repete a cada mudança feita no projeto:</p>
+                    <pre><code>git status
+git add index.html
+git commit -m "feat: cria a página inicial"
+git log</code></pre>
+                    <h4>git status</h4>
+                    <p><code>git status</code> mostra em qual branch você está e a situação de cada arquivo desde o último commit. Os principais estados são:</p>
+                    <ul>
+                        <li><strong>Untracked</strong> — arquivo novo, que o Git ainda não está rastreando; não existia (ou não era monitorado) no commit anterior.</li>
+                        <li><strong>Modified</strong> — arquivo já rastreado, com alterações desde o último commit, ainda não preparadas para o próximo.</li>
+                        <li><strong>Staged</strong> — arquivo já preparado com <code>git add</code>, pronto para entrar no próximo commit.</li>
+                        <li><strong>Deleted</strong> — arquivo rastreado que foi removido da pasta de trabalho.</li>
+                        <li><strong>Renamed</strong> — arquivo rastreado cujo nome ou caminho mudou; o Git costuma detectar a renomeação automaticamente quando o conteúdo permanece parecido.</li>
+                    </ul>
+                    <p>Quando não há nada a mostrar, o Git exibe <code>nothing to commit, working tree clean</code> — sinal de que a pasta de trabalho está idêntica ao último commit. É o comando mais usado no dia a dia — vale rodar antes e depois de quase qualquer outro comando, para saber exatamente o que vai acontecer.</p>
+                    <h4>git add</h4>
+                    <p><code>git add</code> prepara (coloca na área de staging) os arquivos que entrarão no próximo commit. Pode apontar um arquivo específico ou todos de uma vez:</p>
+                    <pre><code>git add index.html
+git add .</code></pre>
+                    <p><code>git add .</code> adiciona todos os arquivos novos e modificados a partir da pasta atual — exceto os que estiverem listados no <code>.gitignore</code>. O <code>.gitignore</code> é um arquivo de texto, na raiz do projeto, com um padrão por linha (nomes de arquivos, pastas ou extensões) que o Git deve ignorar: pastas como <code>node_modules/</code>, arquivos de configuração local, logs e segredos como <code>.env</code> não devem ser versionados e não aparecem quando você usa <code>git add .</code>.</p>
+                    <h4>git commit</h4>
+                    <p><code>git commit -m "mensagem"</code> registra no histórico as mudanças que foram preparadas com <code>git add</code>. O commit exige que a identidade do autor já esteja configurada — nome e e-mail, como visto na seção de configuração — pois esses dados são gravados junto de cada commit; sem eles, o Git recusa o comando.</p>
+                    <p>Uma convenção comum para escrever mensagens de commit é o <strong>Conventional Commits</strong>, que prefixa a mensagem com um tipo, indicando a natureza da mudança:</p>
+                    <ul>
+                        <li><code>feat</code> — uma nova funcionalidade.</li>
+                        <li><code>fix</code> — uma correção de bug.</li>
+                        <li><code>docs</code> — mudanças apenas em documentação.</li>
+                        <li><code>style</code> — formatação, espaçamento, ponto e vírgula — sem alterar o comportamento do código.</li>
+                        <li><code>refactor</code> — reorganização do código que não corrige bug nem adiciona funcionalidade.</li>
+                        <li><code>test</code> — inclusão ou ajuste de testes.</li>
+                    </ul>
+                    <p>Exemplo: <code>git commit -m "fix: corrige contraste do botão de menu"</code>. Não é uma regra do próprio Git, mas uma convenção amplamente adotada que facilita a leitura do histórico e pode ser usada para gerar changelogs automaticamente.</p>
+                    <h4>git log</h4>
+                    <p><code>git log</code> exibe o histórico de commits do repositório, do mais recente para o mais antigo — hash, autor, data e mensagem de cada um. É como consultar a linha do tempo do projeto.</p>
+                    <pre><code>git log
+git log --oneline
+git log --oneline --graph --all</code></pre>
+                    <p><code>--oneline</code> resume cada commit a uma linha (hash curto + mensagem), útil para uma visão rápida. <code>--graph</code> desenha a árvore de branches e merges, e <code>--all</code> inclui branches além da atual — uma combinação bastante usada para entender como o histórico se ramificou.</p>
+                </div>
+            </details>
+            <details id="nuvem">
+                <summary><span><small>06 · NUVEM</small>Salvando seu repositório na nuvem</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <h4>1. Criando um repositório remoto no GitHub</h4>
+                    <ol>
+                        <li>Com a conta já criada (seção 2), acesse <a href="https://github.com/new">github.com/new</a> ou clique no <strong>+</strong> no canto superior direito e depois em <strong>New repository</strong>.</li>
+                        <li>Escolha um nome para o repositório e, se quiser, uma descrição.</li>
+                        <li>Deixe a visibilidade como <strong>Public</strong> — assim qualquer pessoa pode ver o projeto (é possível trocar para <em>Private</em> depois, se preferir).</li>
+                        <li>Não marque as opções de criar README, <code>.gitignore</code> ou licença automaticamente se o repositório local já existe: elas criam arquivos que entram em conflito com o histórico que você já tem.</li>
+                        <li>Clique em <strong>Create repository</strong>.</li>
+                    </ol>
+                    <p>Na página seguinte, copie o endereço do repositório — o GitHub mostra tanto a versão HTTPS quanto a SSH. É esse endereço que conecta o repositório local ao remoto no próximo passo.</p>
+                    <h4>2. Configurando o remoto no repositório local</h4>
+                    <p>De volta ao terminal, dentro da pasta do projeto, registre o endereço copiado como remoto — por convenção, o nome <code>origin</code> é usado para o repositório remoto principal:</p>
+                    <pre><code>git remote add origin URL_DO_REPOSITORIO</code></pre>
+                    <p>Para conferir se o remoto foi configurado corretamente, use <code>git remote -v</code>: o comando lista os remotos conhecidos pelo repositório, com os endereços de leitura (fetch) e escrita (push).</p>
+                    <h4>3. Enviando o repositório local para o remoto</h4>
+                    <p><code>git push</code> envia os commits do repositório local para o repositório remoto. No primeiro envio, use <code>-u</code> (de <em>upstream</em>) para associar a branch local à branch remota — nas próximas vezes, basta <code>git push</code>:</p>
+                    <pre><code>git push -u origin main</code></pre>
+                    <p>A partir daí, o GitHub passa a ter uma cópia completa do repositório, com todo o histórico de commits — pronta para ser acessada, clonada ou compartilhada com outras pessoas.</p>
+                </div>
+            </details>
+            <details id="deploy">
+                <summary><span><small>07 · DEPLOY</small>Fazendo deploy do seu repositório</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Depois do <code>git push</code>, o código já está no GitHub — mas ainda não está no ar, acessível por uma URL. Para páginas <code>.html</code> ou aplicações em JavaScript que rodam inteiramente no navegador, o GitHub oferece uma forma gratuita de publicar o repositório na internet: o <strong>GitHub Pages</strong>.</p>
+                    <h4>Publicando com GitHub Pages</h4>
+                    <ol>
+                        <li>No repositório, no GitHub, acesse a aba <strong>Settings</strong> (Configurações).</li>
+                        <li>No menu lateral, clique em <strong>Pages</strong> (Páginas).</li>
+                        <li>Em <em>Build and deployment</em> (Build e implantação), escolha a fonte (<em>Source</em> / Fonte): <strong>Deploy from a branch</strong> (Implantar a partir de um branch).</li>
+                        <li>Selecione a branch a ser publicada (geralmente <code>main</code>) e a pasta — a raiz (<code>/root</code>) ou uma subpasta <code>/docs</code>.</li>
+                        <li>Clique em <strong>Save</strong> (Salvar).</li>
+                    </ol>
+                    <p>Depois de alguns instantes, o GitHub publica os arquivos e disponibiliza um endereço no formato <code>https://seu-usuario.github.io/nome-do-repositorio/</code>. Qualquer novo <code>git push</code> na branch configurada atualiza automaticamente o site publicado.</p>
+                    <p><strong>Atenção:</strong> o GitHub Pages hospeda apenas arquivos estáticos — HTML, CSS, JavaScript, imagens. Não existe servidor de back-end: não é possível rodar Node.js, PHP, Python, banco de dados ou qualquer código que precise ser executado no servidor. Tudo o que roda ali é front-end, processado inteiramente no navegador de quem acessa a página.</p>
+                </div>
+            </details>
+            <details id="boas-praticas">
+                <summary><span><small>08 · BOAS PRÁTICAS</small>Antes de cada commit e trabalho em equipe</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <div class="two-columns">
+                        <div>
+                            <h4>Antes de cada commit</h4>
+                            <ul>
+                                <li>Use <code>git diff</code> para revisar mudanças e <code>git diff --staged</code> para revisar o que será registrado.</li>
+                                <li>Prefira commits pequenos, com mensagens que expliquem a mudança.</li>
+                                <li>Crie um <code>.gitignore</code> para dependências e arquivos locais. Ele não deixa de rastrear arquivos já versionados.</li>
+                                <li>Não inclua senhas, tokens ou arquivos <code>.env</code> no histórico.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Trabalhando em equipe</h4>
+                            <p>Use <code>git clone URL_DO_REPOSITORIO</code> para obter um projeto. Depois de configurar o remoto, <code>git push -u origin NOME_DA_BRANCH</code> publica sua branch. Revise alterações em conjunto antes de integrá-las.</p>
+                            <p><code>git fetch</code> baixa referências remotas sem integrar mudanças. Se houver conflito ao mesclar, edite os trechos indicados, teste a solução e registre a resolução.</p>
+                            <p><code>git restore --staged arquivo</code> retira o arquivo da preparação e preserva a edição. Já <code>git restore arquivo</code> descarta mudanças locais não preparadas nesse arquivo: revise antes de usar.</p>
+                        </div>
+                    </div>
+                    <div class="source-links"><a href="https://git-scm.com/doc">Documentação oficial do Git ↗</a><a href="https://docs.github.com/pt">Documentação oficial do GitHub ↗</a><a href="https://livros.arvore.com.br/biblioteca/livro/controlando-versoes-com-git-e-github">AQUILES, A. Controlando versões com GIT e GITHUB ↗</a></div>
+                </div>
+            </details>
+        </div>
+        <p><a href="../ensino.html">← Voltar para Ensino</a></p>
+    </main>
+
+    <footer class="wrap footer">
+        <a class="brand" href="../../../index.html#inicio">ft<span>.</span></a>
+        <p>Prof. Fernando <span>·</span> Feito para compartilhar conhecimento.</p>
+        <a href="../../../index.html#inicio">Voltar ao início ↑</a>
+    </footer>
+</body>
+
+</html>

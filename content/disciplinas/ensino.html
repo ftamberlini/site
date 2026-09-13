@@ -59,7 +59,7 @@
                         <div class="card-footer"><span>Período 2025.2</span><a href="pfei/pfei.html" aria-label="Explorar disciplina PFEI">Explorar disciplina <span aria-hidden="true">↗</span></a></div>
                     </article>
                 </div>
-                <div class="resource-grid"><a class="resource-card" href="#git"><span class="resource-symbol">⑂</span>
+                <div class="resource-grid"><a class="resource-card" href="git/git.html"><span class="resource-symbol">⑂</span>
                         <div>
                             <h3>Git, sem complicação</h3>
                             <p>Comandos, boas práticas e um commit de cada vez.</p>
@@ -71,37 +71,6 @@
                         </div><span aria-hidden="true">↗</span>
                     </a></div>
                 <div class="lesson-list">
-                    <details id="git">
-                        <summary><span><small>GUIA PRÁTICO / GIT</small>Um histórico que conta a história do projeto</span><span class="expand" aria-hidden="true">+</span></summary>
-                        <div class="detail-content">
-                            <p>Git registra versões do projeto. GitHub é uma plataforma que hospeda repositórios e facilita a colaboração. Você pode usar Git localmente sem ter uma conta no GitHub.</p>
-                            <h4>Seu primeiro fluxo de trabalho</h4>
-                            <pre><code>git init
-git status
-git add index.html
-git commit -m "Cria a página inicial"
-git switch -c melhora-navegacao</code></pre>
-                            <p>Configure sua autoria antes do primeiro commit com <code>git config --global user.name "Seu Nome"</code> e <code>git config --global user.email "seu-email@example.com"</code>. O nome e o e-mail passam a fazer parte dos commits.</p>
-                            <div class="two-columns">
-                                <div>
-                                    <h4>Antes de cada commit</h4>
-                                    <ul>
-                                        <li>Use <code>git diff</code> para revisar mudanças e <code>git diff --staged</code> para revisar o que será registrado.</li>
-                                        <li>Prefira commits pequenos, com mensagens que expliquem a mudança.</li>
-                                        <li>Crie um <code>.gitignore</code> para dependências e arquivos locais. Ele não deixa de rastrear arquivos já versionados.</li>
-                                        <li>Não inclua senhas, tokens ou arquivos <code>.env</code> no histórico.</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4>Trabalhando em equipe</h4>
-                                    <p>Use <code>git clone URL_DO_REPOSITORIO</code> para obter um projeto. Depois de configurar o remoto, <code>git push -u origin NOME_DA_BRANCH</code> publica sua branch. Revise alterações em conjunto antes de integrá-las.</p>
-                                    <p><code>git fetch</code> baixa referências remotas sem integrar mudanças. Se houver conflito ao mesclar, edite os trechos indicados, teste a solução e registre a resolução.</p>
-                                    <p><code>git restore --staged arquivo</code> retira o arquivo da preparação e preserva a edição. Já <code>git restore arquivo</code> descarta mudanças locais não preparadas nesse arquivo: revise antes de usar.</p>
-                                </div>
-                            </div>
-                            <div class="source-links"><a href="https://git-scm.com/doc">Documentação oficial do Git ↗</a></div>
-                        </div>
-                    </details>
                     <details id="cheatsheet">
                         <summary><span><small>CONSULTA RÁPIDA</small>Menos decorar, mais fazer</span><span class="expand" aria-hidden="true">+</span></summary>
                         <div class="detail-content">
