@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="VS Code, sem complicação: interface básica, atalhos de edição, criação de arquivos, extensões, múltiplas telas e o comando code no terminal.">
+    <meta name="theme-color" content="#f7f8f2">
+    <title>VS Code — Prof. Fernando</title>
+    <link rel="icon" href="../../../img/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../../css/estilo.css">
+    <script src="../../../js/lista.js" defer></script>
+</head>
+
+<body>
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <header class="header"><a class="brand" href="../../../index.html#inicio" aria-label="Prof. Fernando, início">ft<span>.</span><span class="brand-name">Prof. Fernando</span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">☰</span></button>
+        <nav id="navigation" aria-label="Principal"><a href="../ensino.html">Ensino</a><a href="../../cientistas/cientistas.html">Cientistas da Computação</a><a href="../../divagacoes/divagacoes.html">Divagações</a><a href="../../desafios/desafios.html">Desafios</a><a href="../../../index.html#sobre">Sobre <span aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main id="conteudo" class="wrap section">
+        <p class="eyebrow">01 / ENSINO · GUIA PRÁTICO</p>
+        <h1>VS Code, sem complicação</h1>
+        <p class="about-lead">A interface, os atalhos e os comandos para deixar de procurar e começar a usar.</p>
+        <div class="lesson-list">
+            <details id="interface">
+                <summary><span><small>01 · INTERFACE</small>Conhecendo as partes do VS Code</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>A janela do VS Code é dividida em algumas áreas fixas. Reconhecer cada uma facilita achar qualquer comando ou informação:</p>
+                    <ul>
+                        <li><strong>Menu Superior.</strong> A barra de menus tradicional no topo da janela — <em>File</em>, <em>Edit</em>, <em>Selection</em>, <em>View</em>, <em>Go</em>, <em>Run</em>, <em>Terminal</em>, <em>Help</em>. Dá acesso a praticamente todos os comandos do editor, organizados por categoria.</li>
+                        <li><strong>Barra de Atividades.</strong> A coluna estreita de ícones do lado esquerdo da janela: Explorer (arquivos), Search (busca), Source Control (Git), Run and Debug e Extensions. Cada ícone abre um painel diferente ao lado.</li>
+                        <li><strong>Explorador (Explorer).</strong> O painel lateral que mostra a árvore de pastas e arquivos do projeto aberto — é onde você navega, cria, renomeia e apaga arquivos.</li>
+                        <li><strong>Tela principal (área do editor).</strong> A região central, onde o conteúdo dos arquivos abertos aparece em abas. É possível abrir vários arquivos ao mesmo tempo e alternar entre as abas.</li>
+                        <li><strong>Painel inferior.</strong> Aberto com <code>Ctrl+`</code> ou por <em>View → Terminal</em>: reúne o Terminal integrado, a aba <em>Problems</em> (erros e avisos), <em>Output</em> e o <em>Debug Console</em>.</li>
+                        <li><strong>Barra de Status.</strong> A faixa fina na parte inferior da janela: mostra a linguagem do arquivo atual, a posição do cursor (linha/coluna), a branch Git ativa, erros/avisos do projeto e a codificação de caracteres, entre outras informações.</li>
+                    </ul>
+                </div>
+            </details>
+            <details id="atalhos">
+                <summary><span><small>02 · ATALHOS</small>Atalhos de teclado essenciais</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Atalhos no Windows e Linux (no macOS, troque <code>Ctrl</code> por <code>Cmd</code> e <code>Alt</code> por <code>Option</code> na maioria dos casos):</p>
+                    <ul>
+                        <li><code>Ctrl+N</code> — novo arquivo em branco.</li>
+                        <li><code>Ctrl+S</code> — salvar &middot; <code>Ctrl+Shift+S</code> — salvar como.</li>
+                        <li><code>Ctrl+X</code> / <code>Ctrl+C</code> / <code>Ctrl+V</code> — recortar, copiar e colar.</li>
+                        <li><code>Ctrl+Z</code> / <code>Ctrl+Shift+Z</code> — desfazer e refazer.</li>
+                        <li><code>Ctrl+F</code> / <code>Ctrl+H</code> — localizar e substituir no arquivo atual.</li>
+                        <li><code>Ctrl+Shift+F</code> — localizar em todos os arquivos do projeto.</li>
+                        <li><code>Ctrl+/</code> — comentar ou descomentar a linha (ou seleção).</li>
+                        <li><code>Ctrl+D</code> — seleciona a próxima ocorrência igual à seleção atual (edição em múltiplos pontos).</li>
+                        <li><code>Alt+↑</code> / <code>Alt+↓</code> — move a linha atual para cima ou para baixo.</li>
+                        <li><code>Shift+Alt+↑</code> / <code>Shift+Alt+↓</code> — duplica a linha atual.</li>
+                        <li><code>Ctrl+Espaço</code> — abre o autocompletar (IntelliSense).</li>
+                        <li><code>F2</code> — renomeia o símbolo (variável, função...) em todos os lugares onde é usado.</li>
+                        <li><code>Ctrl+P</code> — abre um arquivo rapidamente pelo nome (Quick Open).</li>
+                        <li><code>Ctrl+Shift+P</code> — Paleta de Comandos: busca qualquer comando do VS Code pelo nome.</li>
+                    </ul>
+                </div>
+            </details>
+            <details id="arquivos">
+                <summary><span><small>03 · ARQUIVOS</small>Criando arquivos e pastas</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Com uma pasta de projeto aberta (<em>File → Open Folder</em>), o Explorador oferece duas formas de criar itens novos:</p>
+                    <ul>
+                        <li>Passe o mouse sobre o nome do projeto (ou de uma subpasta) no topo do Explorador: aparecem os ícones <strong>New File</strong> e <strong>New Folder</strong>.</li>
+                        <li>Clique com o botão direito sobre uma pasta na árvore e escolha <em>New File</em> ou <em>New Folder</em> no menu.</li>
+                    </ul>
+                    <p>Em qualquer um dos dois casos, ao digitar o nome, também é possível criar subpastas de uma vez: digitar <code>src/componentes/botao.js</code> no campo de novo arquivo cria as pastas <code>src</code> e <code>componentes</code> (se não existirem) e o arquivo <code>botao.js</code> dentro dela.</p>
+                    <p><code>Ctrl+N</code> cria um arquivo novo, mas ele começa "sem título" e sem local salvo — só passa a existir na pasta do projeto depois de um <code>Ctrl+S</code> (salvar), quando você escolhe onde e com qual nome gravá-lo.</p>
+                </div>
+            </details>
+            <details id="extensoes">
+                <summary><span><small>04 · EXTENSÕES</small>Plugins (extensões)</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Extensões acrescentam funcionalidades que o VS Code não tem por padrão: suporte a linguagens, formatação automática, temas, integração com ferramentas etc.</p>
+                    <ul>
+                        <li>Abra o painel de extensões pelo ícone de peça de quebra-cabeça na Barra de Atividades, ou pelo atalho <code>Ctrl+Shift+X</code>.</li>
+                        <li>Busque pelo nome da extensão, revise a descrição e as avaliações, e clique em <strong>Install</strong>.</li>
+                        <li>Algumas extensões pedem para recarregar a janela (<em>Reload</em>) depois de instaladas.</li>
+                    </ul>
+                    <p>Algumas extensões úteis para começar: <strong>Portuguese Language Pack</strong> (interface em português), <strong>Prettier</strong> (formata o código automaticamente), <strong>ESLint</strong> (aponta problemas no código JavaScript), <strong>Live Server</strong> (abre uma página HTML no navegador com atualização automática) e <strong>GitLens</strong> (mais informações do Git direto no editor).</p>
+                </div>
+            </details>
+            <details id="telas">
+                <summary><span><small>05 · MÚLTIPLAS TELAS</small>Abrindo mais de uma tela</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Existem duas formas de trabalhar com mais de uma área visível ao mesmo tempo:</p>
+                    <ul>
+                        <li><strong>Dividir o editor (Split Editor).</strong> Clique no ícone de divisão no canto superior direito de uma aba, arraste uma aba para a lateral da tela, ou use <code>Ctrl+\</code>. O editor fica dividido em colunas, cada uma com seus próprios arquivos abertos — útil para comparar ou editar dois arquivos lado a lado.</li>
+                        <li><strong>Abrir uma nova janela.</strong> <em>File → New Window</em> (ou <code>Ctrl+Shift+N</code>) abre uma instância separada e independente do VS Code — ideal para ter dois projetos diferentes abertos ao mesmo tempo, cada um em sua própria janela.</li>
+                    </ul>
+                </div>
+            </details>
+            <details id="terminal">
+                <summary><span><small>06 · TERMINAL</small>Chamando o VS Code pelo terminal</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Com o comando <code>code</code> disponível no terminal, dá para abrir o editor sem precisar procurá-lo no menu do sistema:</p>
+                    <pre><code>code .
+code arquivo.js
+code nome-da-pasta</code></pre>
+                    <p><code>code .</code> abre o VS Code já na pasta atual do terminal — o comando mais usado no dia a dia. <code>code arquivo.js</code> abre um arquivo específico; <code>code nome-da-pasta</code> abre outra pasta como projeto.</p>
+                    <p>Outras variações úteis: <code>code -r .</code> reaproveita a janela já aberta em vez de criar uma nova; <code>code -a pasta</code> adiciona uma pasta ao workspace atual; <code>code -d arquivo1 arquivo2</code> abre os dois arquivos em modo de comparação (diff).</p>
+                    <p>Se o terminal não reconhecer o comando <code>code</code>, abra o VS Code, pressione <code>Ctrl+Shift+P</code> para abrir a Paleta de Comandos e procure por <em>"Shell Command: Install 'code' command in PATH"</em>. No instalador do Windows, marcar a opção <em>"Add to PATH"</em> durante a instalação evita esse passo.</p>
+                </div>
+            </details>
+            <details id="navegador">
+                <summary><span><small>07 · NAVEGADOR</small>Abrindo um arquivo .html no navegador</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>O VS Code edita o código, mas quem exibe uma página é o navegador. Para ver o resultado de um arquivo <code>.html</code>, existem algumas opções:</p>
+                    <ul>
+                        <li><strong>Clique duplo no arquivo.</strong> Pelo Explorador de Arquivos do sistema (fora do VS Code), dar duplo clique em um <code>.html</code> abre com o navegador padrão.</li>
+                        <li><strong>Arrastar para o navegador.</strong> Com uma janela do navegador já aberta, arraste o arquivo <code>.html</code> do Explorador de Arquivos para dentro dela.</li>
+                        <li><strong>Copiar o caminho e colar no navegador.</strong> Clique com o botão direito no arquivo — no Explorador de Arquivos do sistema ou no Explorador do VS Code — e escolha <em>"Copy Path"</em> (Copiar Caminho). Depois é só colar (<code>Ctrl+V</code>) na barra de endereço do navegador e apertar Enter.</li>
+                        <li><strong>Extensão Live Server.</strong> Com a extensão instalada (seção 04), clique com o botão direito no arquivo <code>.html</code>, dentro do VS Code, e escolha <em>"Open with Live Server"</em> — ou clique em <em>"Go Live"</em> no canto da Barra de Status. Abre num servidor local (endereço <code>http://127.0.0.1:5500</code>) e atualiza a página sozinho a cada vez que o arquivo é salvo.</li>
+                        <li><strong>Pelo terminal.</strong> Dentro da pasta do arquivo: <code>start arquivo.html</code> no Windows, <code>open arquivo.html</code> no macOS, ou <code>xdg-open arquivo.html</code> no Linux.</li>
+                    </ul>
+                    <p>Abrir direto pelo duplo clique ou pelo caminho copiado funciona bem para páginas simples. Já a Live Server é a opção mais usada durante o desenvolvimento: evita ficar recarregando a página manualmente e é necessária sempre que a página faz requisições (<code>fetch</code>) para outros arquivos, algo que o navegador bloqueia quando o HTML é aberto direto do disco, sem um servidor.</p>
+                </div>
+            </details>
+        </div>
+        <p><a href="../ensino.html">← Voltar para Ensino</a></p>
+    </main>
+
+    <footer class="wrap footer">
+        <a class="brand" href="../../../index.html#inicio">ft<span>.</span></a>
+        <p>Prof. Fernando <span>·</span> Feito para compartilhar conhecimento.</p>
+        <a href="../../../index.html#inicio">Voltar ao início ↑</a>
+    </footer>
+</body>
+
+</html>

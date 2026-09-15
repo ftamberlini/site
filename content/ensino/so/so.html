@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="SO — Sistema de Arquivos: Windows x Linux, navegação pelo shell (dir/ls, cd, mkdir, del, rmdir) e manipulação de arquivos no Windows Explorer.">
+    <meta name="theme-color" content="#f7f8f2">
+    <title>SO — Sistema de Arquivos — Prof. Fernando</title>
+    <link rel="icon" href="../../../img/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../../css/estilo.css">
+    <script src="../../../js/lista.js" defer></script>
+</head>
+
+<body>
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <header class="header"><a class="brand" href="../../../index.html#inicio" aria-label="Prof. Fernando, início">ft<span>.</span><span class="brand-name">Prof. Fernando</span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">☰</span></button>
+        <nav id="navigation" aria-label="Principal"><a href="../ensino.html">Ensino</a><a href="../../cientistas/cientistas.html">Cientistas da Computação</a><a href="../../divagacoes/divagacoes.html">Divagações</a><a href="../../desafios/desafios.html">Desafios</a><a href="../../../index.html#sobre">Sobre <span aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main id="conteudo" class="wrap section">
+        <p class="eyebrow">01 / ENSINO · GUIA PRÁTICO</p>
+        <h1>SO, sistema de arquivos</h1>
+        <p class="about-lead">Windows x Linux, comandos de navegação no shell e o Windows Explorer.</p>
+        <div class="lesson-list">
+            <details id="conceitos">
+                <summary><span><small>01 · CONCEITOS</small>Windows e Linux organizam arquivos de formas diferentes</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Um sistema de arquivos é a forma como o sistema operacional organiza, nomeia e localiza os dados guardados no disco. Windows e Linux resolvem isso de maneiras parecidas na ideia — pastas dentro de pastas — mas diferentes em vários detalhes práticos.</p>
+                    <ul>
+                        <li><strong>Formato do disco.</strong> O Windows usa NTFS como padrão (e FAT32/exFAT em pendrives e cartões); o Linux usa mais comumente ext4, entre outros formatos (btrfs, xfs).</li>
+                        <li><strong>Raiz da árvore de pastas.</strong> No Windows, cada disco tem sua própria letra e sua própria raiz (<code>C:\</code>, <code>D:\</code>...). No Linux existe uma única raiz (<code>/</code>) para tudo; outros discos e dispositivos são "montados" dentro dela, em pontos como <code>/mnt</code> ou <code>/media</code>.</li>
+                        <li><strong>Separador de caminho.</strong> Windows usa contrabarra: <code>C:\Usuarios\Fernando</code>. Linux usa barra: <code>/home/fernando</code>.</li>
+                        <li><strong>Maiúsculas e minúsculas.</strong> O Windows é <em>case insensitive</em>: <code>Documento.txt</code> e <code>documento.txt</code> são o mesmo arquivo. O Linux é <em>case-sensitive</em>: são dois arquivos diferentes.</li>
+                        <li><strong>Permissões.</strong> O Linux exibe permissões de leitura, escrita e execução por usuário/grupo/outros diretamente no terminal (algo como <code>-rwxr-xr-x</code>). O Windows também tem permissões (ACLs), mas geralmente são configuradas pela interface gráfica, nas propriedades do arquivo.</li>
+                    </ul>
+                    <h4>Árvore de diretórios no Windows</h4>
+                    <pre><code>C:\
+├── Windows\              → arquivos do sistema operacional
+├── Program Files\        → programas instalados (64 bits)
+├── Program Files (x86)\  → programas instalados (32 bits)
+├── Users\
+│   └── NomeUsuario\
+│       ├── Desktop\    → Área de Trabalho
+│       ├── Documents\  → Documentos
+│       ├── Downloads\  → Downloads
+│       ├── Pictures\   → Imagens
+│       ├── Music\      → Músicas
+│       └── Videos\     → Vídeos
+└── ProgramData\          → dados e configurações compartilhados entre usuários</code></pre>
+                    <h4>Árvore de diretórios no Linux</h4>
+                    <pre><code>/
+├── bin/   → comandos essenciais (ls, cp, mv...)
+├── etc/   → arquivos de configuração do sistema
+├── home/
+│   └── nomeusuario/  → seus arquivos pessoais — equivalente a Users\NomeUsuario no Windows
+├── root/  → pasta pessoal do superusuário (root), não a raiz "/"
+├── usr/   → programas, bibliotecas e a maior parte dos comandos instalados
+├── var/   → dados que mudam com o tempo: logs, cache, filas de impressão
+├── tmp/   → arquivos temporários, apagados a cada reinicialização
+└── mnt/, /media/  → onde discos e pendrives externos são "montados"</code></pre>
+                    <p>Repare que os dois seguem a mesma lógica — uma pasta pessoal para os arquivos do usuário (<code>Users\NomeUsuario</code> ou <code>/home/nomeusuario</code>), pastas para os programas instalados e pastas reservadas para o próprio sistema. A diferença está em como essa árvore começa: no Windows, uma raiz por letra de unidade; no Linux, uma única raiz para tudo.</p>
+                </div>
+            </details>
+            <details id="terminal">
+                <summary><span><small>02 · TERMINAL</small>Navegando pelas pastas no shell</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Os comandos abaixo fazem praticamente a mesma coisa em Bash (Linux/macOS) e PowerShell (Windows) — só a sintaxe muda. Vale lembrar: no PowerShell, <code>dir</code> e <code>ls</code> são apenas dois nomes (aliases) para o mesmo comando, <code>Get-ChildItem</code>.</p>
+                    <h4>Onde você está</h4>
+                    <pre><code># Bash
+pwd
+
+# PowerShell
+pwd</code></pre>
+                    <p><code>pwd</code> (<em>print working directory</em>) mostra o caminho completo da pasta atual. Funciona nos dois shells.</p>
+                    <h4>Listando o conteúdo da pasta</h4>
+                    <pre><code># Bash
+ls -la
+
+# PowerShell
+dir</code></pre>
+                    <p><code>ls</code> lista arquivos e pastas; com <code>-la</code>, mostra também os ocultos e detalhes como tamanho e data. No PowerShell, <code>dir</code> (ou <code>ls</code>, é a mesma coisa) já lista tudo, incluindo ocultos.</p>
+                    <h4>Entrando e saindo de pastas</h4>
+                    <pre><code>cd projetos
+cd ..
+cd</code></pre>
+                    <p><code>cd nome-da-pasta</code> entra na pasta; <code>cd ..</code> sobe um nível. Sozinho, <code>cd</code> tem comportamento diferente em cada shell: no Bash leva para a pasta pessoal (<em>home</em>); no PowerShell, apenas mostra a pasta atual.</p>
+                    <h4>Criando uma pasta</h4>
+                    <pre><code>mkdir nova-pasta</code></pre>
+                    <p><code>mkdir</code> (<em>make directory</em>) funciona igual nos dois shells e cria a pasta dentro do diretório atual.</p>
+                    <h4>Removendo arquivos e pastas</h4>
+                    <pre><code># Bash
+rm arquivo.txt
+rmdir pasta-vazia
+rm -r pasta-com-conteudo
+
+# PowerShell
+del arquivo.txt
+rmdir pasta-vazia
+rmdir -Recurse pasta-com-conteudo</code></pre>
+                    <p><code>rm</code>/<code>del</code> remove arquivos. <code>rmdir</code> remove pastas, mas só quando estão vazias — em ambos os shells. Para remover uma pasta com arquivos dentro, é preciso um comando recursivo: <code>-r</code> no Bash, <code>-Recurse</code> no PowerShell. Nenhum desses comandos envia o arquivo para a lixeira: a remoção pelo terminal é direta e não tem "desfazer".</p>
+                </div>
+            </details>
+            <details id="explorer">
+                <summary><span><small>03 · WINDOWS EXPLORER</small>Manipulando arquivos e pastas com o mouse</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>No Windows, o Explorador de Arquivos (Windows Explorer) faz por clique tudo o que o terminal faz por comando:</p>
+                    <ul>
+                        <li><strong>Criar uma pasta</strong> — clique com o botão direito em um espaço vazio → <em>Novo</em> → <em>Pasta</em> (ou o atalho <code>Ctrl+Shift+N</code>).</li>
+                        <li><strong>Renomear</strong> — selecione o arquivo ou pasta e pressione <code>F2</code>, ou clique com o botão direito → <em>Renomear</em>.</li>
+                        <li><strong>Copiar e mover</strong> — <code>Ctrl+C</code> copia, <code>Ctrl+X</code> recorta (move) e <code>Ctrl+V</code> cola no destino. Também é possível arrastar o item para outra pasta para movê-lo.</li>
+                        <li><strong>Excluir</strong> — a tecla <code>Delete</code> envia o item para a Lixeira, de onde pode ser restaurado. <code>Shift+Delete</code> exclui permanentemente, sem passar pela Lixeira.</li>
+                        <li><strong>Selecionar vários itens</strong> — <code>Ctrl+clique</code> seleciona itens individualmente; <code>Shift+clique</code> seleciona um intervalo; <code>Ctrl+A</code> seleciona tudo na pasta atual.</li>
+                        <li><strong>Mostrar arquivos e extensões ocultos</strong> — na aba <em>Exibir</em> do Explorador, marque <em>Itens ocultos</em> e <em>Extensões de nomes de arquivos</em>. Por padrão, o Windows esconde arquivos de sistema e a extensão de arquivos conhecidos — o que às vezes confunde quem está aprendendo a organizar um projeto.</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+        <p><a href="../ensino.html">← Voltar para Ensino</a></p>
+    </main>
+
+    <footer class="wrap footer">
+        <a class="brand" href="../../../index.html#inicio">ft<span>.</span></a>
+        <p>Prof. Fernando <span>·</span> Feito para compartilhar conhecimento.</p>
+        <a href="../../../index.html#inicio">Voltar ao início ↑</a>
+    </footer>
+</body>
+
+</html>
