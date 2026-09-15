@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>IFRJ - Curso de Informática para Internet</title>
+<script type="text/javascript" src="imc.js"></script>
+<style>
+  :root { --bg: #f4f6f5; --card: #ffffff; --ink: #1f2a24; --muted: #6b7a70; --green: #2f6b4f; --line: #e1e6e2; }
+  * { box-sizing: border-box }
+  body { margin: 0; padding: 48px 16px; background: var(--bg); color: var(--ink); font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; display: flex; justify-content: center }
+  .card { background: var(--card); max-width: 520px; width: 100%; padding: 32px 28px; border-radius: 14px; box-shadow: 0 10px 30px rgba(0, 0, 0, .07); border: 1px solid var(--line) }
+  h3 { margin: 0 0 4px; font-size: 18px; text-align: center }
+  h4 { margin: 0 0 26px; font-size: 14px; font-weight: 400; color: var(--muted); text-align: center }
+  .field { margin-bottom: 16px }
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px }
+  label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px }
+  input[type=text], input[type=email], input[type=tel], input[type=date] { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; font-size: 14px; background: #fafbfa; font-family: inherit }
+  input:focus { outline: 2px solid var(--green); outline-offset: 1px }
+  .radios { display: flex; gap: 18px; align-items: center; margin-top: 4px }
+  .radios label { display: inline-flex; align-items: center; gap: 6px; font-weight: 400; font-size: 14px; margin: 0 }
+  .actions { display: flex; gap: 12px; margin-top: 26px }
+  button { flex: 1; padding: 12px; border-radius: 8px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit }
+  .btn-primary { background: var(--green); color: #fff }
+  .btn-primary:hover { background: #255a41 }
+  .btn-secondary { background: #eef1ee; color: var(--ink) }
+  .btn-secondary:hover { background: #e2e6e2 }
+  #resposta { margin-top: 22px; text-align: center; font-size: 14px; color: var(--muted) }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h3>IMC APP</h3>
+    <h4>Produzido por ...</h4>
+    <form name="formulario">
+      <div class="field">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome">
+      </div>
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email">
+      </div>
+      <div class="row-2">
+        <div class="field">
+          <label for="nasc">Data de Nascimento</label>
+          <input type="date" id="nasc" name="nasc">
+        </div>
+        <div class="field">
+          <label for="tel">Telefone</label>
+          <input type="tel" id="tel" name="tel">
+        </div>
+      </div>
+      <div class="field">
+        <label>Sexo</label>
+        <div class="radios">
+          <label><input type="radio" name="sexo" value="F" checked> Feminino</label>
+          <label><input type="radio" name="sexo" value="M"> Masculino</label>
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="field">
+          <label for="peso">Peso</label>
+          <input type="text" id="peso" name="peso">
+        </div>
+        <div class="field">
+          <label for="altura">Altura</label>
+          <input type="text" id="altura" name="altura">
+        </div>
+      </div>
+      <div class="actions">
+        <button type="reset" class="btn-secondary">Limpar</button>
+        <button type="button" class="btn-primary" onclick="imc()">Calcular IMC</button>
+      </div>
+    </form>
+    <p id="resposta">Clique no botão "Calcular IMC"</p>
+  </div>
+</body>
+</html>
