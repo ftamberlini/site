@@ -19,7 +19,7 @@ Acesse http://localhost:8000. Também é possível abrir `index.html` diretament
 - `js/lista.js`: script compartilhado das páginas de cientistas e divagações (menu lateral, carregamento do conteúdo e sorteio inicial).
 - `content/cientistas/`, `content/divagacoes/`: uma página HTML por cientista e por divagação.
 - `content/ensino/ensino.html`: destino do menu "Ensino" — menu lateral de disciplinas, cards das 3 disciplinas e os guias Git e Cheat sheet (com a busca de comandos), estes últimos em blocos recolhíveis na própria página. Usa `js/script.js`.
-- `content/ensino/<disc>/<disc>.html` (`mpccd.html`, `mdcoo.html`, `pfei.html`): página de cada disciplina, com o mesmo estilo do site e o mesmo menu lateral.
+- `content/ensino/<disc>/<disc>.html` (`mpccd.html`, `info.html`, `mdcoo.html`, `pfei.html`): página de cada disciplina, com o mesmo estilo do site e o mesmo menu lateral.
 - `img/favicon.svg`: ícone do site.
 - `img/<slug>.jpg`: foto de cada cientista (usada no card da página inicial e no topo da página individual); onde não há foto, mantém-se o monograma com as iniciais.
 
