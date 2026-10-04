@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --paper: #f7f8f2;
+    --paper: #eef5fc;
     --white: #fff;
-    --ink: #252e29;
-    --muted: #667168;
-    --green: #275b46;
-    --line: #dce1d7;
-    --mint: #e9efdf;
+    --ink: #2b3948;
+    --muted: #707f8f;
+    --green: #0757ad;
+    --line: #d0dce8;
+    --mint: #d5e6f9;
     --serif: Georgia, 'Times New Roman', serif;
     --sans: 'DM Sans', Arial, sans-serif
 }
@@ -100,6 +100,13 @@ a:hover {
     color: var(--green)
 }
 
+.brand-icon {
+    display: block;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px
+}
+
 .brand .brand-name {
     font: 600 14px var(--sans);
     letter-spacing: -.3px;
@@ -183,7 +190,7 @@ h1 em {
 }
 
 .button:hover {
-    background: #1c4434;
+    background: #034082;
     color: white
 }
 
@@ -210,7 +217,7 @@ h1 em {
     position: absolute;
     width: 310px;
     height: 310px;
-    border: 1px solid #d7e0cc;
+    border: 1px solid #bfd5ed;
     border-radius: 50%;
     z-index: -1
 }
@@ -228,16 +235,16 @@ h1 em {
     position: absolute;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, #e2e9d6 5%, transparent 70%);
+    background: radial-gradient(circle, #cadff5 5%, transparent 70%);
     z-index: -1
 }
 
 .code-window {
     width: 345px;
     max-width: 95%;
-    border: 1px solid #d5ddd1;
+    border: 1px solid #c9d7e5;
     border-radius: 10px;
-    background: #fcfdf8;
+    background: #f6faff;
     box-shadow: 0 18px 40px #32422e0b;
     transform: rotate(-3deg);
     overflow: hidden
@@ -245,7 +252,7 @@ h1 em {
 
 .window-top {
     padding: 13px 15px;
-    border-bottom: 1px solid #e3e7dd;
+    border-bottom: 1px solid #d6e2ee;
     display: flex;
     gap: 5px;
     align-items: center
@@ -255,7 +262,7 @@ h1 em {
     height: 6px;
     width: 6px;
     border-radius: 50%;
-    background: #cad1c2
+    background: #b8c9db
 }
 
 .window-top i:first-child {
@@ -267,25 +274,25 @@ h1 em {
 }
 
 .window-top i:nth-child(3) {
-    background: #a6bd94
+    background: #79a7d8
 }
 
 .window-top>span {
     margin-left: auto;
     margin-right: 90px;
     font: 9px monospace;
-    color: #75816e
+    color: #687f97
 }
 
 .code-lines {
     font: 11px/2.25 monospace;
     padding: 18px 13px;
-    color: #345442;
+    color: #2b5c91;
     white-space: nowrap
 }
 
 .line-number {
-    color: #a6afa0;
+    color: #96a7b9;
     margin-right: 13px;
     font-size: 9px
 }
@@ -301,14 +308,14 @@ h1 em {
 .window-bottom {
     display: flex;
     gap: 6px;
-    border-top: 1px solid #e3e7dd;
+    border-top: 1px solid #d6e2ee;
     padding: 8px 13px;
     font: 8px monospace;
-    color: #839078
+    color: #6883a0
 }
 
 .window-bottom>span:first-child {
-    color: #7f9b62
+    color: #3d7dc2
 }
 
 .window-bottom>span:last-child {
@@ -318,7 +325,7 @@ h1 em {
 .floating-tag {
     position: absolute;
     background: #fff;
-    border: 1px solid #e3e7dd;
+    border: 1px solid #d6e2ee;
     padding: 8px 13px;
     border-radius: 5px;
     font: 10px monospace;
@@ -336,13 +343,13 @@ h1 em {
     bottom: 3px;
     left: 28px;
     transform: rotate(-5deg);
-    color: #6b755c
+    color: #5c7ea3
 }
 
 .art-plus {
     position: absolute;
     font: 25px var(--serif);
-    color: #8c9a7c
+    color: #688aae
 }
 
 .plus-one {
@@ -362,7 +369,7 @@ h1 em {
     border-bottom: 1px solid var(--line);
     margin-top: 53px;
     padding-bottom: 24px;
-    color: #75806d;
+    color: #687f97;
     font-size: 9px;
     letter-spacing: 1.3px
 }
@@ -422,7 +429,7 @@ h2 {
 }
 
 .course-card:hover {
-    border-color: #96af97;
+    border-color: #86a2bf;
     transform: translateY(-3px)
 }
 
@@ -435,11 +442,11 @@ h2 {
 .icon-box {
     width: 39px;
     height: 39px;
-    background: #eef2e7;
+    background: #e0ecf9;
     display: grid;
     place-items: center;
     font-size: 23px;
-    color: #54744d;
+    color: #447ebb;
     border-radius: 8px
 }
 
@@ -453,8 +460,8 @@ h2 {
 .badge {
     font-size: 8px;
     letter-spacing: 1px;
-    color: #65745e;
-    border: 1px solid #e5e9df;
+    color: #617e9e;
+    border: 1px solid #d8e4f0;
     border-radius: 4px;
     padding: 3px 8px
 }
@@ -483,7 +490,7 @@ h2 {
 }
 
 .card-footer {
-    border-top: 1px solid #e8ebe4;
+    border-top: 1px solid #dfe7f0;
     margin-top: 24px;
     padding-top: 17px;
     display: flex;
@@ -536,7 +543,7 @@ h2 {
 }
 
 .resource-card:hover {
-    background: #edf1e7
+    background: #e0ecf8
 }
 
 .resource-symbol {
@@ -609,7 +616,7 @@ details[open]>summary .expand {
 
 .detail-content {
     padding: 0 0 28px;
-    color: #4f5c51;
+    color: #62768b;
     font-size: 14px
 }
 
@@ -649,7 +656,7 @@ details[open]>summary .expand {
 }
 
 pre {
-    background: #edf0e7;
+    background: #e1ebf6;
     border-radius: 6px;
     padding: 18px;
     overflow: auto;
@@ -658,7 +665,7 @@ pre {
 
 code {
     font-size: .88em;
-    background: #edf0e7;
+    background: #e1ebf6;
     padding: 2px 3px;
     border-radius: 3px
 }
@@ -670,9 +677,9 @@ pre code {
 }
 
 .scientists-section {
-    background: #eef1e7;
-    border-top: 1px solid #e3e7db;
-    border-bottom: 1px solid #e3e7db
+    background: #e0ecf8;
+    border-top: 1px solid #d3e1ef;
+    border-bottom: 1px solid #d3e1ef
 }
 
 .scientist-grid {
@@ -682,8 +689,8 @@ pre code {
 }
 
 .scientist-card {
-    background: #f8f9f4;
-    border: 1px solid #dfe4d7;
+    background: #f1f6fc;
+    border: 1px solid #cfddec;
     border-radius: 6px;
     overflow: hidden
 }
@@ -701,7 +708,7 @@ pre code {
     right: 12px;
     top: 12px;
     font-size: 12px;
-    color: #75816b
+    color: #647f9b
 }
 
 .scientist-card[open] {
@@ -719,10 +726,10 @@ pre code {
     place-items: center;
     width: 52px;
     height: 52px;
-    border: 1px solid #d4ddc9;
+    border: 1px solid #bcd2ea;
     border-radius: 50%;
-    background: #e7ecdf;
-    color: #657858;
+    background: #d7e5f4;
+    color: #527ead;
     font: italic 22px var(--serif);
     margin-bottom: 16px;
     object-fit: cover
@@ -783,7 +790,7 @@ pre code {
 }
 
 .essay-grid article {
-    border-top: 1px solid #bdc9b5;
+    border-top: 1px solid #a8bed6;
     padding-top: 23px
 }
 
@@ -821,8 +828,8 @@ pre code {
 
 .about-section {
     padding: 60px 0;
-    background: #e7edde;
-    border-top: 1px solid #dce3d2
+    background: #d4e5f7;
+    border-top: 1px solid #c7daee
 }
 
 .about-grid {
@@ -842,7 +849,7 @@ pre code {
 
 .about-grid p:not(.eyebrow) {
     font-size: 13px;
-    color: #5b6856
+    color: #647f9b
 }
 
 .about-grid .about-lead {
@@ -861,7 +868,7 @@ pre code {
 
 .about-tags span {
     font-size: 9px;
-    border: 1px solid #cbd5bf;
+    border: 1px solid #b1c9e3;
     padding: 4px 10px;
     border-radius: 4px
 }
@@ -922,7 +929,7 @@ pre code {
 }
 
 input[type=search] {
-    border: 1px solid #b9c5b4;
+    border: 1px solid #a9bcd0;
     border-radius: 5px;
     background: #fff;
     padding: 8px 12px;
