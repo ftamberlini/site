@@ -27,7 +27,7 @@ Acesse http://localhost:8000. Também é possível abrir `index.html` diretament
 
 Cada página de disciplina reproduz o conteúdo do acervo original: MPCCD de `https://ftamberlini.dev.br/202602/mpccd.html`, MDCOO e PFEI de `https://ftamberlini.dev.br/202502/{mdcoo,pfei}.html`. Links de arquivos apontam para o domínio original. Os links para os materiais originais estão nas disciplinas. As datas antigas não são apresentadas como calendário atual. Os perfis incluem referências para leitura adicional. As reflexões são textos editoriais propostos para o site, sem atribuição de experiências pessoais ao professor.
 
-Edite os textos em `index.html` e o array `commands` em `js/script.js`. As fontes DM Sans e Manrope usam Google Fonts, com alternativas locais caso o serviço não esteja disponível. Todo o conteúdo editorial continua acessível sem JavaScript; busca, filtros e cópia precisam de JavaScript.
+Edite os textos em `index.html` e o array `commands` em `js/script.js`. A fonte Source Sans 3 usa Google Fonts, com alternativa local caso o serviço não esteja disponível. Todo o conteúdo editorial continua acessível sem JavaScript; busca, filtros e cópia precisam de JavaScript.
 
 ## Publicar
 

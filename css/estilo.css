@@ -1,15 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root {
-    --paper: #eef5fc;
+    --paper: #f7f9fc;
     --white: #fff;
-    --ink: #2b3948;
-    --muted: #707f8f;
-    --green: #0757ad;
-    --line: #d0dce8;
-    --mint: #d5e6f9; 
-    --serif: Georgia, 'Times New Roman', serif;
-    --sans: 'DM Sans', Arial, sans-serif
+    --ink: #1f2b3a;
+    --muted: #5a6a7d;
+    --blue: #0757ad;
+    --navy: #0b3f7d;
+    --deep: #034082;
+    --line: #dde5ef;
+    --mint: #e3edf8;
+    --display: 'Source Sans 3', Arial, sans-serif;
+    --sans: 'Source Sans 3', Arial, sans-serif
 }
 
 * {
@@ -61,12 +63,18 @@ a:focus-visible,
 button:focus-visible,
 summary:focus-visible,
 input:focus-visible {
-    outline: 3px solid #9862a9;
-    outline-offset: 5px
+    outline: 3px solid var(--navy);
+    outline-offset: 4px
+}
+
+.header a:focus-visible,
+.header button:focus-visible,
+.footer a:focus-visible {
+    outline-color: #fff
 }
 
 a:hover {
-    color: var(--green)
+    color: var(--blue)
 }
 
 .wrap {
@@ -77,41 +85,44 @@ a:hover {
 }
 
 .header {
-    max-width: 1320px;
-    margin: auto;
-    min-height: 98px;
-    padding: 20px 48px;
+    min-height: 72px;
+    padding: 14px max(48px, calc((100% - 1320px) / 2 + 48px));
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid var(--line);
+    background: var(--blue);
+    color: #fff;
     gap: 25px
 }
 
 .brand {
-    font: 700 39px/1 var(--serif);
+    font: 700 34px/1 var(--display);
     display: flex;
     align-items: center;
-    letter-spacing: -3px;
+    letter-spacing: -1.5px;
     white-space: nowrap
 }
 
 .brand>span:first-child {
-    color: var(--green)
+    color: var(--blue)
 }
 
 .brand-icon {
     display: block;
-    width: 44px;
-    height: 44px;
-    border-radius: 8px
+    width: 40px;
+    height: 40px;
+    border-radius: 4px
 }
 
 .brand .brand-name {
-    font: 600 14px var(--sans);
-    letter-spacing: -.3px;
-    margin-left: 19px;
-    color: var(--ink)
+    font: 600 16px var(--sans);
+    letter-spacing: 0;
+    margin-left: 14px;
+    color: #fff
+}
+
+.header .brand:hover {
+    color: #fff
 }
 
 nav {
@@ -121,12 +132,15 @@ nav {
 }
 
 nav a {
-    font-size: 13px;
-    font-weight: 500
+    font-size: 15px;
+    font-weight: 500;
+    color: #d4e4f7
 }
 
-nav a:hover {
-    box-shadow: 0 2px var(--green)
+nav a:hover,
+nav a[aria-current="page"] {
+    color: #fff;
+    box-shadow: 0 2px #fff
 }
 
 .menu-toggle {
@@ -142,10 +156,10 @@ nav a:hover {
 }
 
 .eyebrow {
-    font-size: 10px;
-    letter-spacing: 1.8px;
+    font-size: 12px;
+    letter-spacing: 1.2px;
     font-weight: 700;
-    color: var(--green);
+    color: var(--blue);
     margin: 0 0 22px
 }
 
@@ -153,27 +167,28 @@ nav a:hover {
     width: 7px;
     height: 7px;
     display: inline-block;
-    background: var(--green);
+    background: var(--blue);
     border-radius: 50%;
     margin-right: 8px
 }
 
 h1 {
-    font: 500 clamp(44px, 5.2vw, 65px)/1.13 var(--serif);
-    letter-spacing: -2.5px;
+    font: 700 clamp(40px, 4.8vw, 58px)/1.1 var(--display);
+    letter-spacing: -1px;
+    color: var(--navy);
     margin: 0 0 24px
 }
 
 h1 em {
-    color: var(--green);
+    color: var(--blue);
     font-weight: 400
 }
 
 .hero-description {
     max-width: 410px;
-    font-size: 16px;
+    font-size: 18px;
     color: var(--muted);
-    line-height: 1.85;
+    line-height: 1.7;
     margin-bottom: 30px
 }
 
@@ -181,16 +196,16 @@ h1 em {
     display: inline-flex;
     align-items: center;
     gap: 30px;
-    padding: 13px 20px;
-    border-radius: 5px;
-    background: var(--green);
+    padding: 12px 20px;
+    border-radius: 4px;
+    background: var(--blue);
     color: white;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 600
 }
 
 .button:hover {
-    background: #034082;
+    background: var(--deep);
     color: white
 }
 
@@ -336,7 +351,7 @@ h1 em {
     right: 0;
     top: 14px;
     transform: rotate(5deg);
-    color: var(--green)
+    color: var(--blue)
 }
 
 .tag-bottom {
@@ -348,7 +363,7 @@ h1 em {
 
 .art-plus {
     position: absolute;
-    font: 25px var(--serif);
+    font: 25px var(--display);
     color: #688aae
 }
 
@@ -370,13 +385,13 @@ h1 em {
     margin-top: 53px;
     padding-bottom: 24px;
     color: #687f97;
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 1.3px
 }
 
 .hero-foot>span:last-child {
     letter-spacing: 0;
-    font-size: 10px
+    font-size: 12px
 }
 
 .hero-foot>span:last-child span {
@@ -401,13 +416,14 @@ h1 em {
 }
 
 h2 {
-    font: 400 34px/1.25 var(--serif);
-    letter-spacing: -1px;
+    font: 700 32px/1.25 var(--display);
+    letter-spacing: -.5px;
+    color: var(--navy);
     margin: 0
 }
 
 .section-heading>p {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.8;
     color: var(--muted);
     margin: 0 0 3px
@@ -421,16 +437,16 @@ h2 {
 }
 
 .course-card {
-    padding: 27px;
+    padding: 24px 26px;
     background: #fff;
     border: 1px solid var(--line);
-    border-radius: 8px;
-    transition: border-color .2s, transform .2s
+    border-top: 4px solid var(--blue);
+    border-radius: 4px;
+    transition: box-shadow .2s
 }
 
 .course-card:hover {
-    border-color: #86a2bf;
-    transform: translateY(-3px)
+    box-shadow: 0 6px 18px rgba(11, 63, 125, .12)
 }
 
 .card-top {
@@ -440,47 +456,48 @@ h2 {
 }
 
 .icon-box {
-    width: 39px;
-    height: 39px;
-    background: #e0ecf9;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--blue);
     display: grid;
     place-items: center;
-    font-size: 23px;
-    color: #447ebb;
-    border-radius: 8px
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blue);
+    border-radius: 4px
 }
 
 .icon-box.violet {
-    background: #f0ebf6;
-    color: #8e78a8;
     font-family: monospace;
-    font-size: 16px
+    font-size: 15px
 }
 
 .badge {
-    font-size: 8px;
-    letter-spacing: 1px;
-    color: #617e9e;
-    border: 1px solid #d8e4f0;
-    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .8px;
+    color: var(--navy);
+    background: var(--mint);
+    border-radius: 3px;
     padding: 3px 8px
 }
 
 .course-card h3 {
-    font: 700 25px 'Manrope', var(--sans);
-    letter-spacing: -1px;
-    margin: 20px 0 7px
+    font: 700 24px var(--display);
+    letter-spacing: -.3px;
+    color: var(--navy);
+    margin: 18px 0 6px
 }
 
 .course-card p {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--muted);
     max-width: 370px;
     line-height: 1.8
 }
 
 .course-card .course-name {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.5;
     font-weight: 500;
     color: var(--ink);
@@ -497,7 +514,7 @@ h2 {
     gap: 15px;
     justify-content: space-between;
     align-items: center;
-    font-size: 10px
+    font-size: 13px
 }
 
 .card-footer>span {
@@ -505,7 +522,7 @@ h2 {
 }
 
 .card-footer a {
-    color: var(--green);
+    color: var(--blue);
     font-weight: 600
 }
 
@@ -521,11 +538,11 @@ h2 {
     content: "";
     position: absolute;
     inset: 0;
-    border-radius: 8px
+    border-radius: 4px
 }
 
 .card-link:focus-within {
-    border-color: var(--green)
+    border-color: var(--blue)
 }
 
 .resource-grid {
@@ -536,28 +553,31 @@ h2 {
     display: flex;
     align-items: center;
     gap: 17px;
+    background: #fff;
     border: 1px solid var(--line);
-    border-radius: 7px;
-    padding: 21px 23px;
-    transition: background .2s
+    border-left: 4px solid var(--blue);
+    border-radius: 4px;
+    padding: 20px 22px;
+    transition: box-shadow .2s
 }
 
 .resource-card:hover {
-    background: #e0ecf8
+    box-shadow: 0 6px 18px rgba(11, 63, 125, .12)
 }
 
 .resource-symbol {
     font: 24px monospace;
-    color: var(--green)
+    color: var(--blue)
 }
 
 .resource-card h3 {
-    font-size: 13px;
+    font-size: 16px;
+    color: var(--navy);
     margin: 0
 }
 
 .resource-card p {
-    font-size: 10px;
+    font-size: 13px;
     color: var(--muted);
     margin: 4px 0 0
 }
@@ -599,14 +619,14 @@ summary::-webkit-details-marker {
 .lesson-list small {
     display: block;
     color: var(--muted);
-    font-size: 8px;
+    font-size: 11px;
     letter-spacing: 1.1px;
     margin-bottom: 3px
 }
 
 .expand {
-    font: 25px var(--serif);
-    color: var(--green);
+    font: 25px var(--display);
+    color: var(--blue);
     margin-left: 12px
 }
 
@@ -650,7 +670,7 @@ details[open]>summary .expand {
 
 .source-links a {
     font-size: 12px;
-    color: var(--green);
+    color: var(--blue);
     text-decoration: underline;
     text-underline-offset: 4px
 }
@@ -677,9 +697,9 @@ pre code {
 }
 
 .scientists-section {
-    background: #e0ecf8;
-    border-top: 1px solid #d3e1ef;
-    border-bottom: 1px solid #d3e1ef
+    background: #eef3f9;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line)
 }
 
 .scientist-grid {
@@ -689,9 +709,10 @@ pre code {
 }
 
 .scientist-card {
-    background: #f1f6fc;
-    border: 1px solid #cfddec;
-    border-radius: 6px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--blue);
+    border-radius: 4px;
     overflow: hidden
 }
 
@@ -730,7 +751,7 @@ pre code {
     border-radius: 50%;
     background: #d7e5f4;
     color: #527ead;
-    font: italic 22px var(--serif);
+    font: 600 22px var(--display);
     margin-bottom: 16px;
     object-fit: cover
 }
@@ -748,14 +769,15 @@ pre code {
 }
 
 .scientist-card h3 {
-    font-size: 12px;
+    font-size: 15px;
+    color: var(--navy);
     font-weight: 600;
     line-height: 1.4;
     margin: 0 0 6px
 }
 
 .scientist-card summary p {
-    font-size: 9px;
+    font-size: 12px;
     color: var(--muted);
     margin: 0;
     line-height: 1.5
@@ -773,12 +795,12 @@ pre code {
 
 .scientist-bio a {
     text-decoration: underline;
-    color: var(--green);
+    color: var(--blue);
     font-size: 11px
 }
 
 .section-note {
-    font-size: 10px;
+    font-size: 13px;
     color: var(--muted);
     margin: 22px 0 0
 }
@@ -790,34 +812,35 @@ pre code {
 }
 
 .essay-grid article {
-    border-top: 1px solid #a8bed6;
-    padding-top: 23px
+    border-top: 3px solid var(--blue);
+    padding-top: 20px
 }
 
 .essay-category {
-    font-size: 8px;
+    font-size: 11px;
     letter-spacing: 1.2px;
-    color: var(--green);
+    color: var(--blue);
     font-weight: 600
 }
 
 .essay-grid h3 {
-    font: 400 25px/1.3 var(--serif);
-    letter-spacing: -.4px;
-    margin: 15px 0 12px
+    font: 700 23px/1.3 var(--display);
+    letter-spacing: -.3px;
+    color: var(--navy);
+    margin: 12px 0 10px
 }
 
 .essay-grid p {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--muted);
     line-height: 1.9
 }
 
 .essay-grid summary {
-    font-size: 11px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 600;
     margin-top: 24px;
-    color: var(--green);
+    color: var(--blue);
     display: flex;
     gap: 18px
 }
@@ -828,8 +851,8 @@ pre code {
 
 .about-section {
     padding: 60px 0;
-    background: #d4e5f7;
-    border-top: 1px solid #c7daee
+    background: #fff;
+    border-top: 1px solid var(--line)
 }
 
 .about-grid {
@@ -844,12 +867,12 @@ pre code {
 }
 
 .about-grid h2 span {
-    color: var(--green)
+    color: var(--blue)
 }
 
 .about-grid p:not(.eyebrow) {
-    font-size: 13px;
-    color: #647f9b
+    font-size: 15px;
+    color: var(--muted)
 }
 
 .about-grid .about-lead {
@@ -867,27 +890,43 @@ pre code {
 }
 
 .about-tags span {
-    font-size: 9px;
-    border: 1px solid #b1c9e3;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    background: var(--mint);
     padding: 4px 10px;
-    border-radius: 4px
+    border-radius: 3px
 }
 
 .footer {
     display: flex;
     align-items: center;
     gap: 25px;
-    padding-top: 27px;
-    padding-bottom: 27px
+    padding-top: 22px;
+    padding-bottom: 22px;
+    background: var(--deep);
+    color: #fff;
+    box-shadow: 0 0 0 100vmax var(--deep);
+    clip-path: inset(0 -100vmax)
 }
 
 .footer .brand {
-    font-size: 30px
+    font-size: 28px;
+    color: #fff
+}
+
+.footer .brand>span:first-child {
+    color: #7fb2ec
+}
+
+.footer a:hover {
+    color: #fff;
+    text-decoration: underline
 }
 
 .footer p {
-    font-size: 10px;
-    color: var(--muted)
+    font-size: 13px;
+    color: #b9cfe9
 }
 
 .footer p span {
@@ -896,7 +935,8 @@ pre code {
 
 .footer>a:last-child {
     margin-left: auto;
-    font-size: 10px
+    font-size: 13px;
+    color: #d4e4f7
 }
 
 .cheat-controls {
@@ -918,19 +958,19 @@ pre code {
     background: transparent;
     color: var(--ink);
     padding: 7px 13px;
-    border-radius: 5px;
-    font-size: 12px
+    border-radius: 4px;
+    font-size: 14px
 }
 
 .filters .active {
-    background: var(--green);
+    background: var(--blue);
     color: #fff;
-    border-color: var(--green)
+    border-color: var(--blue)
 }
 
 input[type=search] {
     border: 1px solid #a9bcd0;
-    border-radius: 5px;
+    border-radius: 4px;
     background: #fff;
     padding: 8px 12px;
     max-width: 100%;
@@ -948,7 +988,7 @@ input[type=search] {
 
 .command-row .command-category {
     font-size: 10px;
-    color: var(--green)
+    color: var(--blue)
 }
 
 .command-row code {
@@ -967,7 +1007,7 @@ input[type=search] {
     border: 1px solid var(--line);
     padding: 8px 9px;
     border-radius: 4px;
-    color: var(--green)
+    color: var(--blue)
 }
 
 .muted {
@@ -980,7 +1020,7 @@ input[type=search] {
     bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--green);
+    background: var(--blue);
     color: white;
     border-radius: 6px;
     padding: 10px 18px;
@@ -1035,10 +1075,10 @@ input[type=search] {
 }
 
 .lista-menu h2 {
-    font: 700 10px/1 var(--sans);
+    font: 700 12px/1 var(--sans);
     letter-spacing: 1.8px;
     text-transform: uppercase;
-    color: var(--green);
+    color: var(--blue);
     margin: 0 0 16px
 }
 
@@ -1053,8 +1093,8 @@ input[type=search] {
 .lista-menu a {
     display: block;
     padding: 7px 10px;
-    border-radius: 5px;
-    font-size: 13px;
+    border-radius: 4px;
+    font-size: 15px;
     color: var(--muted)
 }
 
@@ -1064,7 +1104,7 @@ input[type=search] {
 }
 
 .lista-menu a.ativo {
-    background: var(--green);
+    background: var(--blue);
     color: #fff;
     font-weight: 600
 }
@@ -1082,8 +1122,8 @@ input[type=search] {
 }
 
 .lista-conteudo h1 {
-    font: 500 clamp(30px, 4vw, 42px)/1.16 var(--serif);
-    letter-spacing: -1.5px;
+    font: 700 clamp(30px, 4vw, 40px)/1.16 var(--display);
+    letter-spacing: -.5px;
     margin: 0 0 14px
 }
 
@@ -1092,7 +1132,7 @@ input[type=search] {
 }
 
 .lista-conteudo a {
-    color: var(--green);
+    color: var(--blue);
     text-decoration: underline
 }
 
@@ -1107,7 +1147,7 @@ input[type=search] {
     width: 110px;
     height: 138px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 4px;
     border: 1px solid var(--line);
     flex-shrink: 0
 }
@@ -1120,14 +1160,14 @@ input[type=search] {
 }
 
 .disciplina-conteudo .ficha {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--muted);
     margin: 0 0 4px
 }
 
 .disciplina-conteudo h2 {
-    font: 400 23px/1.3 var(--serif);
-    letter-spacing: -.4px;
+    font: 700 23px/1.3 var(--display);
+    letter-spacing: -.3px;
     margin: 40px 0 12px;
     padding-top: 22px;
     border-top: 1px solid var(--line)
@@ -1138,12 +1178,12 @@ input[type=search] {
     font-weight: 600;
     letter-spacing: .3px;
     text-transform: uppercase;
-    color: var(--green);
+    color: var(--blue);
     margin: 22px 0 8px
 }
 
 .disciplina-conteudo p {
-    font-size: 14px
+    font-size: 16px
 }
 
 .disciplina-conteudo ul {
@@ -1153,7 +1193,7 @@ input[type=search] {
 
 .disciplina-conteudo li {
     margin-bottom: 7px;
-    font-size: 14px
+    font-size: 16px
 }
 
 .disciplina-conteudo .video-grid {
@@ -1174,7 +1214,8 @@ input[type=search] {
     height: 100%;
     background: var(--white);
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-top: 3px solid var(--blue);
+    border-radius: 4px;
     overflow: hidden;
     color: var(--ink);
     text-decoration: none
@@ -1182,7 +1223,7 @@ input[type=search] {
 
 .video-grid a:hover,
 .video-grid a:focus-visible {
-    border-color: var(--green)
+    border-color: var(--blue)
 }
 
 .video-grid img {
@@ -1254,7 +1295,7 @@ input[type=search] {
 
 @media(max-width:1000px) {
     .header {
-        padding: 22px 30px
+        padding: 14px 30px
     }
 
     .brand .brand-name {
@@ -1287,7 +1328,7 @@ input[type=search] {
     }
 
     h1 {
-        font-size: 51px
+        font-size: 46px
     }
 
     .scientist-grid {
@@ -1299,7 +1340,7 @@ input[type=search] {
     }
 
     .card-footer {
-        font-size: 9px
+        font-size: 12px
     }
 
     .about-grid {
@@ -1318,39 +1359,35 @@ input[type=search] {
     }
 
     .header {
-        padding: 20px 22px;
-        min-height: 78px;
+        padding: 12px 22px;
+        min-height: 64px;
         flex-wrap: wrap;
         gap: 0
     }
 
-    .brand {
-        font-size: 33px
-    }
-
     .brand .brand-name {
         display: inline;
-        font-size: 12px;
-        margin-left: 13px
+        font-size: 15px;
+        margin-left: 12px
     }
 
     .menu-toggle {
         display: flex;
-        gap: 15px;
+        gap: 12px;
         align-items: center;
-        border: 1px solid var(--line);
+        border: 1px solid rgba(255, 255, 255, .6);
         background: transparent;
         border-radius: 4px;
         padding: 7px 10px;
-        font-size: 11px;
-        color: var(--ink)
+        font-size: 14px;
+        color: #fff
     }
 
     nav {
         width: 100%;
         flex-wrap: wrap;
-        gap: 16px 24px;
-        padding-top: 22px
+        gap: 14px 24px;
+        padding: 16px 0 6px
     }
 
     body.js nav:not(.open) {
@@ -1358,7 +1395,7 @@ input[type=search] {
     }
 
     nav a {
-        font-size: 12px
+        font-size: 15px
     }
 
     .hero {
@@ -1371,8 +1408,8 @@ input[type=search] {
     }
 
     h1 {
-        font-size: 51px;
-        letter-spacing: -2px
+        font-size: 40px;
+        letter-spacing: -.5px
     }
 
     .hero-description {
@@ -1387,9 +1424,9 @@ input[type=search] {
     }
 
     .button {
-        font-size: 11px;
+        font-size: 14px;
         gap: 17px;
-        padding: 12px 15px
+        padding: 12px 16px
     }
 
     .hero-art {
@@ -1455,7 +1492,7 @@ input[type=search] {
     }
 
     h2 {
-        font-size: 30px
+        font-size: 27px
     }
 
     .course-grid,
@@ -1542,7 +1579,7 @@ input[type=search] {
 
     .footer p {
         width: calc(100% - 50px);
-        font-size: 9px
+        font-size: 12px
     }
 
     .footer>a:last-child {
