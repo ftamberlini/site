@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="JavaScript e Orientação a Objetos: como declarar objetos literais, funções construtoras e classes em JavaScript, com getters, setters, métodos estáticos e cuidados com this.">
+    <meta name="theme-color" content="#f7f9fc">
+    <title>JavaScript e Orientação a Objetos — Prof. Fernando</title>
+    <link rel="icon" href="../../../img/f12b-192.png" type="image/png">
+    <link rel="stylesheet" href="../../../css/estilo.css">
+    <script src="../../../js/lista.js" defer></script>
+</head>
+
+<body>
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <header class="header"><a class="brand" href="../../../index.html#inicio" aria-label="Prof. Fernando, início"><img class="brand-icon" src="../../../img/f12b-192.png" alt="" width="44" height="44"><span class="brand-name">Prof. Fernando</span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">☰</span></button>
+        <nav id="navigation" aria-label="Principal"><a href="../ensino.html">Ensino</a><a href="../../cientistas/cientistas.html">Cientistas da Computação</a><a href="../../divagacoes/divagacoes.html">Divagações</a><a href="../../desafios/desafios.html">Desafios</a><a href="../../../index.html#sobre">Sobre <span aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main id="conteudo" class="wrap section">
+        <p class="eyebrow">01 / ENSINO · GUIA PRÁTICO</p>
+        <h1>JavaScript e Orientação a Objetos</h1>
+        <p class="about-lead">Como declarar objetos e classes em JavaScript, do objeto literal à palavra-chave <code>class</code>.</p>
+        <p class="guia-intro">Todos os exemplos podem ser executados no console do navegador (F12 → aba <strong>Console</strong>) ou com Node.js. Para entender as ideias por trás do código — abstração, encapsulamento, herança e polimorfismo — veja também o guia <a href="../conceitos-oo/conceitos-oo.html">Conceitos de Orientação a Objetos</a>.</p>
+        <div class="lesson-list">
+            <details id="objetos-literais">
+                <summary><span><small>01 · OBJETOS</small>Objetos literais: o jeito mais simples</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Em JavaScript, um objeto é um conjunto de pares <strong>chave: valor</strong>. As chaves são as <em>propriedades</em> (os dados do objeto) e, quando o valor é uma função, chamamos de <em>método</em> (o que o objeto sabe fazer). A forma mais direta de criar um objeto é escrevê-lo entre chaves — o chamado <strong>objeto literal</strong>:</p>
+                    <pre><code>const aluno = {
+  nome: "Ana",
+  matricula: 2026001,
+  notas: [8, 7.5, 9],
+  media() {
+    const soma = this.notas.reduce((total, nota) =&gt; total + nota, 0);
+    return soma / this.notas.length;
+  }
+};
+
+console.log(aluno.nome);     // "Ana"
+console.log(aluno.media());  // 8.166...</code></pre>
+                    <p>Dentro de um método, <code>this</code> se refere ao próprio objeto: <code>this.notas</code> é a lista de notas de <code>aluno</code>.</p>
+                    <h4>Acessando e alterando propriedades</h4>
+                    <p>Há duas notações de acesso. A notação de ponto é a mais comum; a de colchetes é útil quando o nome da propriedade está guardado em uma variável ou tem caracteres especiais:</p>
+                    <pre><code>aluno.nome;            // notação de ponto
+aluno["matricula"];    // notação de colchetes
+
+const campo = "nome";
+aluno[campo];          // "Ana"
+
+aluno.curso = "Informática";  // cria uma nova propriedade
+aluno.nome = "Ana Souza";     // altera uma existente
+delete aluno.matricula;       // remove a propriedade</code></pre>
+                    <p>Repare que <code>const</code> impede apenas que a variável <code>aluno</code> aponte para outro objeto — o conteúdo do objeto continua podendo ser alterado.</p>
+                    <p><strong>Quando usar:</strong> objetos literais são ótimos para um único objeto, como as configurações de uma página ou os dados vindos de um formulário. Quando você precisa de muitos objetos com a mesma estrutura (vários alunos, vários produtos), o ideal é ter um "molde" — uma classe.</p>
+                </div>
+            </details>
+            <details id="construtora">
+                <summary><span><small>02 · MOLDES</small>Função construtora e o operador new</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Antes de 2015, JavaScript não tinha a palavra-chave <code>class</code>. Para criar vários objetos parecidos, usava-se uma <strong>função construtora</strong>, chamada com o operador <code>new</code>. Por convenção, o nome começa com letra maiúscula:</p>
+                    <pre><code>function Aluno(nome, matricula) {
+  this.nome = nome;
+  this.matricula = matricula;
+}
+
+Aluno.prototype.apresentar = function () {
+  return `Olá, eu sou ${this.nome}.`;
+};
+
+const ana = new Aluno("Ana", 2026001);
+const bruno = new Aluno("Bruno", 2026002);
+
+console.log(bruno.apresentar()); // "Olá, eu sou Bruno."</code></pre>
+                    <p>O <code>new</code> cria um objeto vazio, faz <code>this</code> apontar para ele, executa a função e devolve o objeto pronto. Os métodos ficam no <code>prototype</code> para que todos os alunos compartilhem a mesma função, em vez de cada um carregar uma cópia.</p>
+                    <p>Você ainda vai encontrar esse estilo em códigos mais antigos e em tutoriais. Em código novo, prefira <code>class</code> (próxima seção): por baixo dos panos o funcionamento é o mesmo, mas a escrita é mais clara.</p>
+                </div>
+            </details>
+            <details id="classes">
+                <summary><span><small>03 · CLASSES</small>Declarando classes com class</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Uma <strong>classe</strong> é um molde que descreve quais propriedades e métodos os objetos terão. Cada objeto criado a partir dela é uma <strong>instância</strong>. O método especial <code>constructor</code> roda automaticamente quando usamos <code>new</code> e serve para preencher as propriedades iniciais:</p>
+                    <pre><code>class Aluno {
+  constructor(nome, matricula) {
+    this.nome = nome;
+    this.matricula = matricula;
+    this.notas = [];
+  }
+
+  adicionarNota(nota) {
+    this.notas.push(nota);
+  }
+
+  media() {
+    if (this.notas.length === 0) return 0;
+    const soma = this.notas.reduce((total, nota) =&gt; total + nota, 0);
+    return soma / this.notas.length;
+  }
+}
+
+const ana = new Aluno("Ana", 2026001);
+ana.adicionarNota(8);
+ana.adicionarNota(9);
+
+console.log(ana.media());             // 8.5
+console.log(ana instanceof Aluno);    // true</code></pre>
+                    <ul>
+                        <li>Os métodos são escritos sem a palavra <code>function</code> e sem vírgulas entre eles.</li>
+                        <li>Por convenção, nomes de classes usam <strong>PascalCase</strong> (<code>ContaBancaria</code>); propriedades e métodos usam <strong>camelCase</strong> (<code>adicionarNota</code>).</li>
+                        <li><code>instanceof</code> verifica se um objeto foi criado a partir de determinada classe.</li>
+                    </ul>
+                    <h4>Campos de classe</h4>
+                    <p>Propriedades com valor inicial fixo podem ser declaradas diretamente no corpo da classe, fora do <code>constructor</code>:</p>
+                    <pre><code>class Contador {
+  valor = 0;
+
+  incrementar() {
+    this.valor++;
+  }
+}
+
+const c = new Contador();
+c.incrementar();
+console.log(c.valor); // 1</code></pre>
+                </div>
+            </details>
+            <details id="getters-setters">
+                <summary><span><small>04 · RECURSOS</small>Getters, setters e métodos estáticos</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <h4>get e set</h4>
+                    <p>Um <strong>getter</strong> (<code>get</code>) é um método que é lido como se fosse uma propriedade. Um <strong>setter</strong> (<code>set</code>) é executado quando atribuímos um valor — útil para validar dados antes de guardá-los:</p>
+                    <pre><code>class Produto {
+  constructor(nome, preco) {
+    this.nome = nome;
+    this.preco = preco; // passa pelo setter abaixo
+  }
+
+  get preco() {
+    return this._preco;
+  }
+
+  set preco(valor) {
+    if (valor &lt; 0) {
+      throw new Error("O preço não pode ser negativo.");
+    }
+    this._preco = valor;
+  }
+
+  get precoFormatado() {
+    return `R$ ${this._preco.toFixed(2)}`;
+  }
+}
+
+const caderno = new Produto("Caderno", 18.9);
+console.log(caderno.precoFormatado); // "R$ 18.90" — sem parênteses
+caderno.preco = -5;                  // Error: O preço não pode ser negativo.</code></pre>
+                    <p>O sublinhado em <code>_preco</code> é só uma convenção para indicar "uso interno". Para proteger de verdade um dado, JavaScript tem campos privados com <code>#</code>, explicados na seção de encapsulamento do guia de conceitos.</p>
+                    <h4>Métodos estáticos</h4>
+                    <p>Um método <code>static</code> pertence à classe, não às instâncias. É chamado pelo nome da classe e costuma ser usado para funções utilitárias ou para criar objetos de formas alternativas:</p>
+                    <pre><code>class Temperatura {
+  static celsiusParaFahrenheit(c) {
+    return c * 9 / 5 + 32;
+  }
+}
+
+console.log(Temperatura.celsiusParaFahrenheit(25)); // 77</code></pre>
+                    <p>Você já usa métodos estáticos sem perceber: <code>Math.max()</code>, <code>Number.parseInt()</code> e <code>Array.isArray()</code> são todos chamados pelo nome da classe.</p>
+                </div>
+            </details>
+            <details id="extends">
+                <summary><span><small>05 · HERANÇA</small>Estendendo uma classe com extends</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Com <code>extends</code>, uma classe herda propriedades e métodos de outra. No <code>constructor</code> da classe filha, <code>super(...)</code> chama o construtor da classe mãe e precisa vir antes de qualquer uso de <code>this</code>:</p>
+                    <pre><code>class Pessoa {
+  constructor(nome) {
+    this.nome = nome;
+  }
+
+  apresentar() {
+    return `Olá, eu sou ${this.nome}.`;
+  }
+}
+
+class Professor extends Pessoa {
+  constructor(nome, disciplina) {
+    super(nome);
+    this.disciplina = disciplina;
+  }
+
+  apresentar() {
+    return `${super.apresentar()} Leciono ${this.disciplina}.`;
+  }
+}
+
+const fernando = new Professor("Fernando", "MDCOO");
+console.log(fernando.apresentar());
+// "Olá, eu sou Fernando. Leciono MDCOO."</code></pre>
+                    <p>O conceito de herança — e quando faz sentido usá-la — é explicado com mais calma no guia <a href="../conceitos-oo/conceitos-oo.html#heranca">Conceitos de Orientação a Objetos</a>.</p>
+                </div>
+            </details>
+            <details id="armadilhas">
+                <summary><span><small>06 · CUIDADOS</small>Armadilhas comuns</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <h4>Esquecer o new</h4>
+                    <p>Chamar uma classe sem <code>new</code> gera erro: <code>TypeError: Class constructor Aluno cannot be invoked without 'new'</code>. Com funções construtoras antigas é pior: não há erro, e <code>this</code> acaba apontando para o lugar errado.</p>
+                    <h4>Classes não são içadas</h4>
+                    <p>Diferente de <code>function</code>, uma classe só pode ser usada depois da linha em que foi declarada. Usar antes gera <code>ReferenceError</code>.</p>
+                    <h4>this em arrow functions</h4>
+                    <p>Arrow functions (<code>=&gt;</code>) não têm o próprio <code>this</code>: elas usam o <code>this</code> de onde foram escritas. Por isso, não use arrow function para declarar métodos de um objeto literal:</p>
+                    <pre><code>const turma = {
+  nome: "INFO 1",
+  errado: () =&gt; this.nome,  // this NÃO é turma
+  certo() {
+    return this.nome;         // this é turma
+  }
+};
+
+console.log(turma.errado()); // undefined
+console.log(turma.certo());  // "INFO 1"</code></pre>
+                    <h4>Perder o this ao passar um método adiante</h4>
+                    <p>Ao passar um método como callback (por exemplo, para <code>addEventListener</code> ou <code>setTimeout</code>), ele perde a ligação com o objeto. Use uma arrow function para envolver a chamada:</p>
+                    <pre><code>const ana = new Aluno("Ana", 2026001);
+
+setTimeout(ana.media, 1000);         // erro: this não é mais ana
+setTimeout(() =&gt; ana.media(), 1000); // funciona</code></pre>
+                    <div class="source-links"><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Working_with_objects">MDN — Trabalhando com objetos ↗</a><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Classes">MDN — Classes ↗</a><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/this">MDN — this ↗</a></div>
+                </div>
+            </details>
+        </div>
+        <p><a href="../ensino.html">← Voltar para Ensino</a></p>
+    </main>
+
+    <footer class="wrap footer">
+        <a class="brand" href="../../../index.html#inicio">ft<span>.</span></a>
+        <p>Prof. Fernando <span>·</span> Feito para compartilhar conhecimento.</p>
+        <a href="../../../index.html#inicio">Voltar ao início ↑</a>
+    </footer>
+</body>
+
+</html>

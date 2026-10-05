@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Conceitos de Orientação a Objetos: abstração, encapsulamento, herança e polimorfismo explicados com exemplos simples em JavaScript.">
+    <meta name="theme-color" content="#f7f9fc">
+    <title>Conceitos de Orientação a Objetos — Prof. Fernando</title>
+    <link rel="icon" href="../../../img/f12b-192.png" type="image/png">
+    <link rel="stylesheet" href="../../../css/estilo.css">
+    <script src="../../../js/lista.js" defer></script>
+</head>
+
+<body>
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <header class="header"><a class="brand" href="../../../index.html#inicio" aria-label="Prof. Fernando, início"><img class="brand-icon" src="../../../img/f12b-192.png" alt="" width="44" height="44"><span class="brand-name">Prof. Fernando</span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">☰</span></button>
+        <nav id="navigation" aria-label="Principal"><a href="../ensino.html">Ensino</a><a href="../../cientistas/cientistas.html">Cientistas da Computação</a><a href="../../divagacoes/divagacoes.html">Divagações</a><a href="../../desafios/desafios.html">Desafios</a><a href="../../../index.html#sobre">Sobre <span aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main id="conteudo" class="wrap section">
+        <p class="eyebrow">01 / ENSINO · GUIA PRÁTICO</p>
+        <h1>Conceitos de Orientação a Objetos</h1>
+        <p class="about-lead">Abstração, encapsulamento, herança e polimorfismo, cada um com um exemplo curto em JavaScript.</p>
+        <p class="guia-intro">Os exemplos usam a sintaxe de classes do JavaScript. Se ainda não conhece <code>class</code>, <code>constructor</code> e <code>new</code>, comece pelo guia <a href="../js-oo/js-oo.html">JavaScript e Orientação a Objetos</a>.</p>
+        <div class="lesson-list">
+            <details id="o-que-e">
+                <summary><span><small>01 · INTRODUÇÃO</small>O que é programar orientado a objetos</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>A Programação Orientada a Objetos (POO) organiza o código em torno de <strong>objetos</strong>: representações de coisas do problema que reúnem dados e comportamentos no mesmo lugar. Em um sistema escolar, por exemplo, teríamos objetos como alunos, turmas e disciplinas.</p>
+                    <ul>
+                        <li><strong>Classe</strong> — o molde que descreve como um tipo de objeto é. Ex.: <code>Aluno</code>.</li>
+                        <li><strong>Objeto</strong> (ou instância) — algo concreto criado a partir da classe. Ex.: a aluna Ana.</li>
+                        <li><strong>Atributos</strong> (ou propriedades) — os dados de cada objeto. Ex.: nome, matrícula, notas.</li>
+                        <li><strong>Métodos</strong> — as ações que o objeto sabe realizar. Ex.: calcular a média.</li>
+                    </ul>
+                    <pre><code>class Aluno {
+  constructor(nome) {
+    this.nome = nome;     // atributo
+  }
+
+  estudar() {             // método
+    return `${this.nome} está estudando.`;
+  }
+}
+
+const ana = new Aluno("Ana");  // objeto (instância)
+console.log(ana.estudar());    // "Ana está estudando."</code></pre>
+                    <p>A POO costuma ser apresentada a partir de quatro pilares. Eles não são regras isoladas: funcionam juntos para deixar o código mais organizado, mais fácil de entender e de modificar.</p>
+                </div>
+            </details>
+            <details id="abstracao">
+                <summary><span><small>02 · PILAR 1</small>Abstração: ficar só com o que importa</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p><strong>Abstração</strong> é representar uma coisa do mundo real apenas pelas características que importam para o problema, ignorando o resto. Um carro tem milhares de peças, mas um sistema de estacionamento só precisa da placa, do modelo e do horário de entrada.</p>
+                    <p>A abstração também vale para o uso: quem usa um objeto só precisa saber <em>o que</em> ele faz, não <em>como</em> faz. Você dirige sem saber como funciona a injeção eletrônica.</p>
+                    <pre><code>class Veiculo {
+  constructor(placa, modelo) {
+    this.placa = placa;
+    this.modelo = modelo;
+    this.entrada = new Date();
+  }
+
+  horasEstacionado() {
+    const ms = new Date() - this.entrada;
+    return Math.max(1, Math.ceil(ms / (1000 * 60 * 60))); // cobra no mínimo 1 hora
+  }
+}
+
+const carro = new Veiculo("ABC1D23", "Fiat Uno");
+console.log(carro.horasEstacionado()); // 1</code></pre>
+                    <p>A classe <code>Veiculo</code> não tem cor, potência do motor nem número de portas — para o estacionamento, esses dados não fazem diferença. E quem chama <code>horasEstacionado()</code> não precisa saber que o cálculo é feito em milissegundos.</p>
+                    <p><strong>Em resumo:</strong> abstrair é escolher o que entra no modelo e esconder os detalhes de como as coisas funcionam por dentro.</p>
+                </div>
+            </details>
+            <details id="encapsulamento">
+                <summary><span><small>03 · PILAR 2</small>Encapsulamento: proteger os dados do objeto</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p><strong>Encapsulamento</strong> é esconder os dados internos de um objeto e permitir que eles sejam alterados apenas por métodos do próprio objeto. Assim, o objeto controla as regras e ninguém consegue deixá-lo em um estado inválido.</p>
+                    <p>Em JavaScript, um campo cujo nome começa com <code>#</code> é <strong>privado</strong>: só pode ser acessado de dentro da classe.</p>
+                    <pre><code>class ContaBancaria {
+  #saldo = 0;
+
+  constructor(titular) {
+    this.titular = titular;
+  }
+
+  depositar(valor) {
+    if (valor &lt;= 0) {
+      throw new Error("O depósito precisa ser positivo.");
+    }
+    this.#saldo += valor;
+  }
+
+  sacar(valor) {
+    if (valor &gt; this.#saldo) {
+      throw new Error("Saldo insuficiente.");
+    }
+    this.#saldo -= valor;
+  }
+
+  get saldo() {
+    return this.#saldo;
+  }
+}
+
+const conta = new ContaBancaria("Ana");
+conta.depositar(100);
+conta.sacar(30);
+console.log(conta.saldo); // 70
+
+conta.saldo = 1000000;    // não altera nada: não existe setter
+console.log(conta.saldo); // 70
+
+// conta.#saldo = 1000000;
+// SyntaxError: campos privados não podem ser acessados fora da classe</code></pre>
+                    <p>A única forma de mudar o saldo é por <code>depositar()</code> e <code>sacar()</code>, que verificam as regras. O getter <code>saldo</code> permite <em>ler</em> o valor, mas não alterá-lo diretamente.</p>
+                    <p><strong>Em resumo:</strong> encapsular é guardar os dados dentro do objeto e oferecer métodos seguros para usá-los.</p>
+                </div>
+            </details>
+            <details id="heranca">
+                <summary><span><small>04 · PILAR 3</small>Herança: reaproveitar o que já existe</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p><strong>Herança</strong> permite criar uma classe nova a partir de outra já existente. A classe filha recebe todos os atributos e métodos da classe mãe e pode acrescentar os seus. A relação típica é "<strong>é um</strong>": um cachorro <em>é um</em> animal.</p>
+                    <p>Em JavaScript, a herança é feita com <code>extends</code>. No construtor da filha, <code>super()</code> chama o construtor da mãe:</p>
+                    <pre><code>class Animal {
+  constructor(nome) {
+    this.nome = nome;
+  }
+
+  dormir() {
+    return `${this.nome} está dormindo.`;
+  }
+}
+
+class Cachorro extends Animal {
+  constructor(nome, raca) {
+    super(nome);        // chama o constructor de Animal
+    this.raca = raca;
+  }
+
+  buscarBolinha() {
+    return `${this.nome} trouxe a bolinha!`;
+  }
+}
+
+const rex = new Cachorro("Rex", "Vira-lata");
+console.log(rex.dormir());        // "Rex está dormindo." — herdado
+console.log(rex.buscarBolinha()); // "Rex trouxe a bolinha!" — próprio
+console.log(rex instanceof Animal); // true</code></pre>
+                    <p><code>Cachorro</code> não precisou reescrever <code>nome</code> nem <code>dormir()</code>: herdou de <code>Animal</code>.</p>
+                    <p><strong>Cuidado:</strong> só use herança quando a relação "é um" for verdadeira. Um carro <em>tem um</em> motor, mas não <em>é um</em> motor — nesse caso, o motor deve ser um atributo do carro (composição), não uma classe mãe.</p>
+                    <p><strong>Em resumo:</strong> herdar é reaproveitar uma classe existente e especializá-la.</p>
+                </div>
+            </details>
+            <details id="polimorfismo">
+                <summary><span><small>05 · PILAR 4</small>Polimorfismo: a mesma mensagem, respostas diferentes</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p><strong>Polimorfismo</strong> (do grego: "muitas formas") é a capacidade de objetos de classes diferentes responderem à mesma chamada de método, cada um do seu jeito. O código que faz a chamada não precisa saber qual é o tipo exato do objeto.</p>
+                    <p>Há duas formas clássicas de polimorfismo: a <strong>sobrescrita</strong> (em inglês, <em>override</em>) e a <strong>sobrecarga</strong> (em inglês, <em>overload</em>).</p>
+                    <h4>Sobrescrita (override)</h4>
+                    <p>Na sobrescrita, a classe filha redefine um método que herdou da mãe, mantendo o mesmo nome. Quando o método é chamado, vale a versão da classe do objeto. É a forma mais comum de polimorfismo em JavaScript.</p>
+                    <pre><code>class Animal {
+  constructor(nome) {
+    this.nome = nome;
+  }
+
+  emitirSom() {
+    return `${this.nome} faz um som.`;
+  }
+}
+
+class Cachorro extends Animal {
+  emitirSom() {
+    return `${this.nome} late: Au au!`;
+  }
+}
+
+class Gato extends Animal {
+  emitirSom() {
+    return `${this.nome} mia: Miau!`;
+  }
+}
+
+const bichos = [new Cachorro("Rex"), new Gato("Mimi"), new Animal("Nemo")];
+
+for (const bicho of bichos) {
+  console.log(bicho.emitirSom());
+}
+// "Rex late: Au au!"
+// "Mimi mia: Miau!"
+// "Nemo faz um som."</code></pre>
+                    <p>O laço chama <code>emitirSom()</code> em todos os itens sem perguntar se é cachorro ou gato. Se amanhã surgir uma classe <code>Vaca</code>, basta criá-la com seu próprio <code>emitirSom()</code>: o laço continua funcionando sem nenhuma alteração.</p>
+                    <h4>Sobrecarga (overload)</h4>
+                    <p>Na sobrecarga, a mesma classe tem várias versões de um método com o mesmo nome, que se diferenciam pela quantidade (ou pelo tipo) de argumentos. Linguagens como Java e C# permitem declarar cada versão separadamente.</p>
+                    <p>JavaScript <strong>não tem sobrecarga nativa</strong>: se você declarar dois métodos com o mesmo nome, o último simplesmente substitui o primeiro.</p>
+                    <pre><code>class Exemplo {
+  falar(nome) {
+    return `Olá, ${nome}!`;
+  }
+
+  falar(nome, sobrenome) {   // substitui o método acima
+    return `Olá, ${nome} ${sobrenome}!`;
+  }
+}
+
+console.log(new Exemplo().falar("Ana")); // "Olá, Ana undefined!"</code></pre>
+                    <p>Para obter o mesmo efeito, escrevemos <strong>um único método</strong> que verifica quantos argumentos recebeu e muda o comportamento de acordo. O parâmetro rest (<code>...medidas</code>) junta todos os argumentos em um array, e <code>medidas.length</code> diz quantos foram passados:</p>
+                    <pre><code>class Geometria {
+  area(...medidas) {
+    switch (medidas.length) {
+      case 1: {                          // 1 argumento: quadrado
+        const [lado] = medidas;
+        return lado * lado;
+      }
+      case 2: {                          // 2 argumentos: retângulo
+        const [base, altura] = medidas;
+        return base * altura;
+      }
+      case 3: {                          // 3 argumentos: triângulo (fórmula de Herão)
+        const [a, b, c] = medidas;
+        const s = (a + b + c) / 2;
+        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
+      }
+      default:
+        throw new Error("Informe 1, 2 ou 3 medidas.");
+    }
+  }
+}
+
+const geo = new Geometria();
+console.log(geo.area(4));        // 16 — quadrado de lado 4
+console.log(geo.area(3, 5));     // 15 — retângulo 3 × 5
+console.log(geo.area(3, 4, 5));  // 6  — triângulo de lados 3, 4 e 5</code></pre>
+                    <p>Quem chama <code>area()</code> usa sempre o mesmo nome; o método decide o que fazer pela quantidade de argumentos. Você já usa esse padrão em funções nativas: <code>new Date()</code> sem argumentos devolve a data atual, <code>new Date(2026, 9, 5)</code> monta uma data específica, e <code>Math.max()</code> aceita quantos números você quiser.</p>
+                    <p><strong>Em resumo:</strong> polimorfismo é tratar objetos diferentes da mesma forma e deixar cada um decidir como responder.</p>
+                </div>
+            </details>
+            <details id="juntando">
+                <summary><span><small>06 · RESUMO</small>Os quatro pilares juntos</span><span class="expand" aria-hidden="true">+</span></summary>
+                <div class="detail-content">
+                    <p>Um exemplo pequeno que usa os quatro pilares ao mesmo tempo — formas geométricas e suas áreas:</p>
+                    <pre><code>class Forma {                          // abstração: só o que importa
+  #nome;                               // encapsulamento: campo privado
+
+  constructor(nome) {
+    this.#nome = nome;
+  }
+
+  get nome() {
+    return this.#nome;
+  }
+
+  area() {
+    return 0;
+  }
+
+  descrever() {
+    return `${this.nome}: área ${this.area().toFixed(2)}`;
+  }
+}
+
+class Retangulo extends Forma {        // herança
+  constructor(base, altura) {
+    super("Retângulo");
+    this.base = base;
+    this.altura = altura;
+  }
+
+  area() {                             // polimorfismo: sobrescrita (override)
+    return this.base * this.altura;
+  }
+}
+
+class Circulo extends Forma {          // herança
+  constructor(raio) {
+    super("Círculo");
+    this.raio = raio;
+  }
+
+  area() {                             // polimorfismo: sobrescrita (override)
+    return Math.PI * this.raio ** 2;
+  }
+}
+
+const formas = [new Retangulo(3, 4), new Circulo(2)];
+formas.forEach(forma =&gt; console.log(forma.descrever()));
+// "Retângulo: área 12.00"
+// "Círculo: área 12.57"</code></pre>
+                    <div class="two-columns">
+                        <div>
+                            <h4>Pilar → pergunta que ele responde</h4>
+                            <ul>
+                                <li><strong>Abstração</strong> — o que é essencial para representar isso?</li>
+                                <li><strong>Encapsulamento</strong> — quem pode mexer nesses dados?</li>
+                                <li><strong>Herança</strong> — essa classe é um tipo especial de outra?</li>
+                                <li><strong>Polimorfismo</strong> — objetos diferentes podem responder à mesma chamada?</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>No exemplo acima</h4>
+                            <ul>
+                                <li><code>Forma</code> guarda só nome e área.</li>
+                                <li><code>#nome</code> só pode ser lido, nunca trocado de fora.</li>
+                                <li><code>Retangulo</code> e <code>Circulo</code> herdam <code>descrever()</code>.</li>
+                                <li>Cada forma sobrescreve (<em>override</em>) a própria <code>area()</code>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="source-links"><a href="https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Objects/Object-oriented_programming">MDN — Programação orientada a objetos ↗</a><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Classes/Private_properties">MDN — Propriedades privadas ↗</a><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Classes/extends">MDN — extends ↗</a></div>
+                </div>
+            </details>
+        </div>
+        <p><a href="../ensino.html">← Voltar para Ensino</a></p>
+    </main>
+
+    <footer class="wrap footer">
+        <a class="brand" href="../../../index.html#inicio">ft<span>.</span></a>
+        <p>Prof. Fernando <span>·</span> Feito para compartilhar conhecimento.</p>
+        <a href="../../../index.html#inicio">Voltar ao início ↑</a>
+    </footer>
+</body>
+
+</html>

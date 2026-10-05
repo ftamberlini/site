@@ -514,11 +514,16 @@ h2 {
     gap: 15px;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     font-size: 13px
 }
 
 .card-footer>span {
     color: var(--muted)
+}
+
+.card-footer>* {
+    white-space: nowrap
 }
 
 .card-footer a {
@@ -638,6 +643,14 @@ details[open]>summary .expand {
     padding: 0 0 28px;
     color: #62768b;
     font-size: 14px
+}
+
+.guia-intro a,
+.detail-content p a,
+.detail-content li a {
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 3px
 }
 
 .detail-content h4 {
