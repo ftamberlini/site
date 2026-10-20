@@ -1243,8 +1243,9 @@ input[type=search] {
 
 .disciplina-conteudo .slides-galeria {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    max-width: 720px;
     list-style: none;
     padding: 0;
     margin: 0 0 12px
@@ -1280,13 +1281,9 @@ input[type=search] {
     margin-top: 6px
 }
 
-.slides-galeria li:first-child {
-    grid-column: 1 / -1
-}
-
 .exemplo-video {
     margin: 0 0 24px;
-    max-width: 320px
+    max-width: 240px
 }
 
 .exemplo-video video {
@@ -1305,7 +1302,7 @@ input[type=search] {
 
 @media(max-width:700px) {
     .disciplina-conteudo .slides-galeria {
-        grid-template-columns: 1fr
+        grid-template-columns: repeat(2, minmax(0, 1fr))
     }
 
     .exemplo-video {
