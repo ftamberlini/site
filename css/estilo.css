@@ -1281,6 +1281,31 @@ input[type=search] {
     margin-top: 6px
 }
 
+.trabalhos-galeria img,
+.trabalhos-galeria video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background: var(--line)
+}
+
+.slides-galeria span a {
+    display: inline;
+    border: 0;
+    border-radius: 0
+}
+
+.slides-galeria span a:hover {
+    box-shadow: none
+}
+
+.trabalhos-galeria video {
+    border: 1px solid var(--line);
+    border-radius: 4px
+}
+
 .exemplo-video {
     margin: 0 0 24px;
     max-width: 240px
