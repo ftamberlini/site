@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Atividade prática de Informática Aplicada: elaboração de um orçamento familiar simples em planilha eletrônica, usando AutoSoma e as funções SOMA, MÉDIA, MÁXIMO, MÍNIMO e SE.">
+    <meta name="theme-color" content="#f7f9fc">
+    <title>Atividade Planilha: Orçamento Familiar — Informática Aplicada</title>
+    <link rel="icon" href="../../../img/f12b-192.png" type="image/png">
+    <link rel="stylesheet" href="../../../css/estilo.css?v=2026-11-17">
+    <script src="../../../js/lista.js" defer></script>
+</head>
+
+<body>
+    <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+    <header class="header"><a class="brand" href="../../../index.html#inicio" aria-label="Prof. Fernando, início"><img class="brand-icon" src="../../../img/f12b-192.png" alt="" width="44" height="44"><span class="brand-name">Prof. Fernando</span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">☰</span></button>
+        <nav id="navigation" aria-label="Principal"><a href="../ensino.html">Ensino</a><a href="../../cientistas/cientistas.html">Cientistas da Computação</a><a href="../../divagacoes/divagacoes.html">Divagações</a><a href="../../desafios/desafios.html">Desafios</a><a href="../../../index.html#sobre">Sobre <span aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main id="conteudo" class="wrap section lista-page">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">01 / ENSINO · DISCIPLINAS</p>
+                <h1>Disciplinas.</h1>
+            </div>
+            <p>Material de apoio, ferramentas e <br>referências de cada disciplina.</p>
+        </div>
+        <div class="lista-layout">
+            <aside class="lista-menu" aria-label="Lista de disciplinas">
+                <h2>Disciplinas</h2>
+                <ul>
+                    <li><a href="../ensino.html">Visão geral</a></li>
+                    <li><a href="../mpccd/mpccd.html">MPCCD</a></li>
+                    <li><a href="info.html" class="ativo">Informática Aplicada</a></li>
+                    <li><a href="../mdcoo/mdcoo.html">MDCOO</a></li>
+                    <li><a href="../pfei/pfei.html">PFEI</a></li>
+                </ul>
+            </aside>
+            <article class="lista-conteudo disciplina-conteudo" tabindex="-1">
+                <p class="eyebrow">INFORMÁTICA APLICADA · ATIVIDADE PRÁTICA</p>
+                <h1>Orçamento Familiar na Planilha Eletrônica</h1>
+                <p class="about-lead">Exercício: Orçamento do Trimestre</p>
+                <p class="ficha">Disciplina: Informática Aplicada</p>
+                <p class="ficha">Ferramenta: <a href="https://docs.google.com/spreadsheets/">Planilhas Google</a>, Microsoft Excel ou LibreOffice Calc</p>
+
+                <h2>Objetivo</h2>
+                <p>Aprender a montar uma planilha eletrônica organizada, usando a AutoSoma e as funções <strong>SOMA</strong>, <strong>MÉDIA</strong>, <strong>MÁXIMO</strong>, <strong>MÍNIMO</strong> e <strong>SE</strong>, além de fórmulas com referências absolutas e formatação de moeda e porcentagem.</p>
+
+                <h2>Enunciado</h2>
+                <p>Uma família deseja controlar os gastos de janeiro a março para saber quanto sobra (ou falta) no fim de cada mês. Sua tarefa será montar o orçamento familiar desse trimestre em uma planilha eletrônica, calculando os totais, as médias e o saldo de cada mês.</p>
+
+                <h2>Dados do orçamento</h2>
+                <h3>Receitas (R$)</h3>
+                <table class="planilha-tabela">
+                    <thead>
+                        <tr><th scope="col">Receita</th><th scope="col">Janeiro</th><th scope="col">Fevereiro</th><th scope="col">Março</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Salário</td><td>3.200,00</td><td>3.200,00</td><td>3.200,00</td></tr>
+                        <tr><td>Renda extra</td><td>450,00</td><td>300,00</td><td>0,00</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>Despesas (R$)</h3>
+                <table class="planilha-tabela">
+                    <thead>
+                        <tr><th scope="col">Despesa</th><th scope="col">Janeiro</th><th scope="col">Fevereiro</th><th scope="col">Março</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Aluguel</td><td>1.200,00</td><td>1.200,00</td><td>1.200,00</td></tr>
+                        <tr><td>Energia elétrica</td><td>180,00</td><td>165,00</td><td>210,00</td></tr>
+                        <tr><td>Água</td><td>75,00</td><td>70,00</td><td>82,00</td></tr>
+                        <tr><td>Internet e celular</td><td>120,00</td><td>120,00</td><td>120,00</td></tr>
+                        <tr><td>Supermercado</td><td>850,00</td><td>790,00</td><td>920,00</td></tr>
+                        <tr><td>Transporte</td><td>260,00</td><td>260,00</td><td>280,00</td></tr>
+                        <tr><td>Lazer</td><td>200,00</td><td>150,00</td><td>300,00</td></tr>
+                        <tr><td>Educação</td><td>150,00</td><td>150,00</td><td>150,00</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Etapas</h2>
+                <ol>
+                    <li><strong>Criar o arquivo:</strong> Crie uma planilha chamada "Orçamento Familiar — seu nome".</li>
+                    <li><strong>Título:</strong> Na célula A1, digite "Orçamento Familiar — 1º Trimestre". Mescle as células de A1 até G1 e centralize o título.</li>
+                    <li><strong>Cabeçalho:</strong> Na linha 3, digite os títulos das colunas: Item, Janeiro, Fevereiro, Março, Total, Média e % das Despesas.</li>
+                    <li><strong>Receitas:</strong> Digite as receitas da tabela acima e, logo abaixo delas, uma linha chamada "Total de Receitas".</li>
+                    <li><strong>Despesas:</strong> Deixe uma linha em branco e digite as despesas da tabela acima. Logo abaixo delas, crie a linha "Total de Despesas".</li>
+                    <li><strong>Conferir o layout:</strong> As receitas devem ficar nas linhas 4 e 5, o "Total de Receitas" na linha 6, as despesas nas linhas 8 a 15 e o "Total de Despesas" na linha 16.</li>
+                    <li><strong>AutoSoma nas colunas:</strong> Selecione a célula do "Total de Receitas" de Janeiro e clique no botão <strong>AutoSoma (Σ)</strong>. Confira se o intervalo selecionado está correto e pressione Enter. Repita para Fevereiro e Março e também para o "Total de Despesas".</li>
+                    <li><strong>Total do trimestre:</strong> Na coluna Total, use a função <code>=SOMA(B4:D4)</code> (ajuste para a sua linha) e arraste a fórmula para baixo, para todas as receitas e despesas.</li>
+                    <li><strong>Média mensal:</strong> Na coluna Média, use a função <code>=MÉDIA(B4:D4)</code> e arraste a fórmula para baixo.</li>
+                    <li><strong>Saldo do mês:</strong> Abaixo dos totais, crie a linha "Saldo" (linha 17) com a fórmula Total de Receitas − Total de Despesas de cada mês (por exemplo, <code>=B6-B16</code>).</li>
+                    <li><strong>Situação:</strong> Crie a linha "Situação" (linha 18) e use a função <code>=SE(B17&gt;=0;"Positivo";"Negativo")</code> para indicar se o mês fechou com sobra ou com falta de dinheiro.</li>
+                    <li><strong>Percentual de cada despesa:</strong> Na coluna "% das Despesas", divida o total de cada despesa pelo total geral de despesas, usando referência absoluta com cifrão: <code>=E8/$E$16</code>. Arraste a fórmula para baixo e formate a coluna como porcentagem.</li>
+                    <li><strong>Resumo:</strong> Abaixo da tabela, crie um pequeno quadro com:
+                        <ul>
+                            <li>Maior despesa do trimestre: <code>=MÁXIMO(E8:E15)</code>;</li>
+                            <li>Menor despesa do trimestre: <code>=MÍNIMO(E8:E15)</code>;</li>
+                            <li>Saldo do trimestre: soma dos saldos dos três meses.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Formatar:</strong> Formate os valores como moeda (R$), coloque o cabeçalho e as linhas de total em negrito, aplique bordas na tabela e ajuste a largura das colunas.</li>
+                    <li><strong>Destacar:</strong> Use a formatação condicional para deixar o saldo em vermelho quando for negativo e em verde quando for positivo.</li>
+                </ol>
+                <p class="ficha">Nas fórmulas, os endereços das células são apenas exemplos: ajuste-os de acordo com a posição dos dados na sua planilha. Em português, os argumentos das funções são separados por ponto e vírgula (;).</p>
+
+                <h2>Confira os resultados</h2>
+                <ul>
+                    <li>Total de Receitas: janeiro R$ 3.650,00 · fevereiro R$ 3.500,00 · março R$ 3.200,00</li>
+                    <li>Total de Despesas: janeiro R$ 3.035,00 · fevereiro R$ 2.905,00 · março R$ 3.262,00</li>
+                    <li>Saldo: janeiro R$ 615,00 · fevereiro R$ 595,00 · março −R$ 62,00 (Negativo)</li>
+                    <li>Maior despesa do trimestre: Aluguel, R$ 3.600,00 · menor: Água, R$ 227,00</li>
+                    <li>Saldo do trimestre: R$ 1.148,00</li>
+                </ul>
+
+                <h2>Desafio extra</h2>
+                <p>Crie um gráfico de colunas comparando o Total de Receitas e o Total de Despesas de cada mês, e um gráfico de pizza com o percentual de cada despesa no trimestre.</p>
+
+                <p><a href="info.html">← Voltar para Informática Aplicada</a></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="wrap footer">
+        <a class="brand" href="../../../index.html#inicio">ft<span>.</span></a>
+        <p>Prof. Fernando <span>·</span> Feito para compartilhar conhecimento.</p>
+        <a href="../../../index.html#inicio">Voltar ao início ↑</a>
+    </footer>
+</body>
+
+</html>

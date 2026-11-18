@@ -1306,6 +1306,32 @@ input[type=search] {
     border-radius: 4px
 }
 
+.planilha-tabela {
+    width: 100%;
+    max-width: 560px;
+    border-collapse: collapse;
+    margin: 4px 0 24px;
+    font-size: 15px
+}
+
+.planilha-tabela th,
+.planilha-tabela td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--line);
+    text-align: left
+}
+
+.planilha-tabela th:not(:first-child),
+.planilha-tabela td:not(:first-child) {
+    text-align: right;
+    white-space: nowrap
+}
+
+.planilha-tabela th {
+    color: var(--muted);
+    font-weight: 600
+}
+
 .exemplo-video {
     margin: 0 0 24px;
     max-width: 240px
